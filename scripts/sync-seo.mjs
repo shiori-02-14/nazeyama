@@ -1,4 +1,4 @@
-// content/site.yaml の検索設定を index.html / books.html に反映（GitHub Actions 用）
+// site.yaml の検索設定を index.html / books.html に反映（GitHub Actions 用）
 import { readFile, writeFile } from "node:fs/promises";
 
 function parseSiteYaml(src) {
@@ -96,7 +96,8 @@ function setTitle(html, title) {
 
 function setCanonical(html, url) {
   if (!url) return html;
-  const tag = `<link rel="canonical" href="${escAttr(url.replace(/\/?$/, "/"))}" />`;
+  const normalized = /\.html$/i.test(url) ? url : url.replace(/\/?$/, "/");
+  const tag = `<link rel="canonical" href="${escAttr(normalized)}" />`;
   if (/rel="canonical"/i.test(html)) {
     return html.replace(/<link rel="canonical" href="[^"]*" \/>/i, tag);
   }

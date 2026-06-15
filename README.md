@@ -42,29 +42,9 @@
 
 **本を増やす** → ⑫ `books:` にブロックをコピペ
 
-```yaml
-      - title: "本のタイトル"
-        author: "著者名"
-        comment: "ひとことコメント"
-```
+**Google でヒットさせたい言葉** → ① `seo:` の `keywords:` に追加
 
-表紙と Amazon リンクは **自動取得**（`asin` は書かなくてOK）
-
-**セクションを一時的に消す** → ⑪ `display:` で `false`
-
-```yaml
-display:
-  fanletter: false   # おたより欄を非表示
-```
-
-**TikTok を載せる** → ⑤の TikTok 3行の `#` を外す
-
-**Google でヒットさせたい言葉** → ① `seo:` の `keywords:` に追加（例: リケジョ）
-
-**公開URLを設定** → ① `site.url:` に GitHub Pages のアドレスを入れる（sitemap 生成用）
-
-**画像を差し替える** → `assets/images/` に同名ファイルを上書き  
-ファイル名を変えたときだけ ② `images:` を更新
+**画像を差し替える** → `assets/images/` に同名ファイルを上書き
 
 ---
 
@@ -77,32 +57,20 @@ nazeyama/
 │   └─ site.yaml          ★ 文言・リンク・本リストはここだけ編集
 │
 ├─ assets/images/         ★ 画像を差し替えるとき（任意）
-│   ├─ nazeyama.jpg       … ロゴ・アイコン
-│   └─ physicsneko.png    … ネッコのイラスト
+│   ├─ nazeyama.jpg
+│   └─ physicsneko.png
 │
 ├─ data/                  🤖 自動更新（触らない）
-│   ├─ videos.json        … 動画一覧
-│   ├─ stats.json         … 登録者数など
-│   └─ books.json         … 本の表紙・Amazonリンク
+│   ├─ videos.json
+│   ├─ stats.json
+│   └─ books.json
 │
 ├─ index.html             … トップページ（触らない）
 ├─ books.html             … 本のページ（触らない）
 │
-├─ css/  js/  scripts/    … デザイン・自動取得の仕組み（触らない）
+├─ css/  js/  scripts/   … デザイン・自動取得の仕組み（触らない）
 └─ .github/workflows/     … 6時間ごとの自動更新（触らない）
-
-README.md                 … この編集ガイド
 ```
-
-**フォルダに `node_modules` や `docs` があったら消してOK**（サイトには不要です）。
-
-### 記号の意味
-
-| 記号 | 意味 |
-| --- | --- |
-| ★ | **自分が編集する**場所 |
-| 🤖 | **GitHub が自動で書き換える**（手で直すと上書きされる） |
-| （触らない） | 壊れやすいので **開かなくてOK** |
 
 ### 覚え方
 
@@ -121,12 +89,12 @@ README.md                 … この編集ガイド
 | 登録者数 | `data/stats.json` | 6時間ごと |
 | 本の表紙・Amazonリンク | `data/books.json` | 6時間ごと |
 
-**今すぐ更新したい** → GitHub **Actions** → **Update data** → **Run workflow**
+**今すぐ更新** → GitHub **Actions** → **Update data** → **Run workflow**
 
 ---
 
 ## 困ったとき
 
-- 保存後 **Actions** の **Validate content** が赤 × → インデント（行頭の空白）や `"` の付け忘れを確認
-- 動画が一時的に消えた → 数時間待つか **Update data** を手動実行
+- 保存後 **Actions** が赤 × → インデントや `"` の付け忘れを確認
+- 動画が消えた → **Update data** を手動実行
 - ローカル確認 → `python3 -m http.server 8000` → http://localhost:8000

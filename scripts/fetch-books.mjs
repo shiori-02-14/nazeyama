@@ -1,5 +1,5 @@
 // =========================================================
-//  content/site.yaml の books から表紙・ASIN を Amazon 検索で取得
+// site.yaml の books から表紙・ASIN を Amazon 検索で取得
 //  data/books.json に保存（GitHub Actions / 手動実行）
 // =========================================================
 import { readFile, writeFile } from "node:fs/promises";
