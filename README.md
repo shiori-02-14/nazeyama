@@ -126,3 +126,4 @@ nazeyama/
 - 保存後 **Actions** が赤 × → インデントや `"` の付け忘れを確認
 - 動画が消えた → **Update data** を手動実行
 - サイトの確認 → https://shiori-02-14.github.io/nazeyama/
+- ローカルで動画が出ない → **「すべて」タブ**を選ぶ（ライブは0件のことがある）。`index.html` を直接開かず VS Code の **Live Server** か `python3 -m http.server 8000` で開く

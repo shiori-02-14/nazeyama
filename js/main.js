@@ -12,6 +12,7 @@ const PAGE = document.body.dataset.page || "home";
 let allVideos = [];
 let currentFilter = "all";
 let currentSort = "date";
+let memberOnlyFilter = false;
 const MARQUEE_PX_PER_SEC = 26;
 
 /* YAML 読み込み失敗時の最小フォールバック（file:// プレビュー用） */
@@ -54,9 +55,21 @@ function esc(s) {
   return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function resolvePath(path) {
+  try {
+    return new URL(path, location.href).href;
+  } catch {
+    return path;
+  }
+}
+
 async function loadYaml(path) {
   try {
-    const res = await fetch(path, { cache: "no-store" });
+    const res = await fetch(resolvePath(path), { cache: "no-store" });
     if (!res.ok) throw new Error("http " + res.status);
     const text = await res.text();
     if (!window.jsyaml) return null;
@@ -70,8 +83,9 @@ async function loadYaml(path) {
 async function loadJson(path, retries = 3) {
   for (let i = 0; i < retries; i++) {
     try {
-      const bust = path.includes("?") ? "&" : "?";
-      const url = i ? path + bust + "t=" + Date.now() : path;
+      const base = resolvePath(path);
+      const bust = base.includes("?") ? "&" : "?";
+      const url = i ? base + bust + "t=" + Date.now() : base;
       const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error("http " + res.status);
       return await res.json();
@@ -81,10 +95,6 @@ async function loadJson(path, retries = 3) {
     }
   }
   return null;
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /* ---------------- init ---------------- */
@@ -116,7 +126,7 @@ async function init() {
   renderContact(site);
 
   setupVideoFilter();
-  initMarqueePause();
+  initMarqueeScroll();
   loadStats();
   loadVideos();
 }
@@ -523,23 +533,42 @@ function countUp(sel, target, duration) {
 async function loadVideos() {
   const track = $("#videos-track");
   if (!track) return;
+
+  // 同梱データを先に表示（fetch 待ちで空白にしない）
+  const bundled = window.__NAZEYAMA_VIDEOS__;
+  if (bundled && Array.isArray(bundled.videos) && bundled.videos.length) {
+    allVideos = bundled.videos.filter((v) => v.videoId);
+    renderVideos();
+  }
+
+  let videos = [];
   const data = await loadJson("data/videos.json");
-  const videos = data && Array.isArray(data.videos) ? data.videos.filter((v) => v.videoId) : [];
-  // まず手持ちのデータで即描画（取得待ちに空白を出さない）
-  allVideos = videos;
-  if (videos.length) renderVideos();
-  // JSONが空・読めないときは RSS から直接取得
-  if (!videos.length) {
+  if (data && Array.isArray(data.videos)) {
+    videos = data.videos.filter((v) => v.videoId);
+  } else if (!videos.length && bundled && Array.isArray(bundled.videos)) {
+    videos = bundled.videos.filter((v) => v.videoId);
+  }
+
+  if (videos.length) {
+    allVideos = videos;
+    renderVideos();
+  } else if (!allVideos.length) {
     const fromRss = await fetchRssVideos();
     if (fromRss && fromRss.length) {
       allVideos = fromRss;
       renderVideos();
     }
   }
+
   if (!allVideos.length) {
+    const hint =
+      location.protocol === "file:"
+        ? "<br><span style=\"font-size:0.85em;opacity:0.85\">index.html を直接開くと読み込めないことがあります。VS Code の Live Server などで開いてください。</span>"
+        : "";
     track.innerHTML =
       '<div class="vcard"><div class="vcard__thumb"><span class="chalk-mini">動画を読み込めませんでした<br>' +
-      '<a href="https://www.youtube.com/channel/' + CHANNEL_ID + '" target="_blank" rel="noopener" style="color:inherit">YouTubeで見る</a></span></div></div>';
+      '<a href="https://www.youtube.com/channel/' + CHANNEL_ID + '" target="_blank" rel="noopener" style="color:inherit">YouTubeで見る</a>' +
+      hint + "</span></div></div>";
   }
 }
 
@@ -547,16 +576,13 @@ async function loadVideos() {
 function getVideoList() {
   let list = currentFilter === "all"
     ? allVideos.slice()
-    : allVideos.filter((v) => (v.type || "video") === currentFilter);
+    : allVideos.filter((v) => resolveVideoType(v) === currentFilter);
+  if (memberOnlyFilter) {
+    list = list.filter((v) => v.membersOnly);
+  }
   if (currentSort === "views") {
     list.sort((a, b) => {
       const diff = (b.viewCount || 0) - (a.viewCount || 0);
-      if (diff !== 0) return diff;
-      return String(b.published || "").localeCompare(String(a.published || ""));
-    });
-  } else if (currentSort === "member") {
-    list.sort((a, b) => {
-      const diff = Number(!!b.membersOnly) - Number(!!a.membersOnly);
       if (diff !== 0) return diff;
       return String(b.published || "").localeCompare(String(a.published || ""));
     });
@@ -569,7 +595,15 @@ function renderVideos() {
   if (!track) return;
   const list = getVideoList();
   if (!list.length) {
-    track.innerHTML = '<div class="vcard"><div class="vcard__thumb"><span class="chalk-mini">この種別の動画はまだありません</span></div></div>';
+    let emptyMsg = "動画がありません";
+    if (memberOnlyFilter) {
+      emptyMsg = currentFilter === "all"
+        ? "メンバー限定の動画はまだありません"
+        : "この種別のメンバー限定動画はまだありません";
+    } else if (currentFilter !== "all") {
+      emptyMsg = "この種別の動画はまだありません（「すべて」を試してください）";
+    }
+    track.innerHTML = '<div class="vcard"><div class="vcard__thumb"><span class="chalk-mini">' + emptyMsg + "</span></div></div>";
     return;
   }
   buildMarquee(track, list);
@@ -595,20 +629,24 @@ function setupVideoFilter() {
   });
   sortTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      const next = currentSort === tab.dataset.vsort ? "date" : tab.dataset.vsort;
-      currentSort = next;
-      sortTabs.forEach((t) => t.classList.toggle("tab--active", t.dataset.vsort === currentSort));
+      const kind = tab.dataset.vsort;
+      if (kind === "member") {
+        memberOnlyFilter = !memberOnlyFilter;
+        tab.classList.toggle("tab--active", memberOnlyFilter);
+      } else if (kind === "views") {
+        currentSort = currentSort === "views" ? "date" : "views";
+        tab.classList.toggle("tab--active", currentSort === "views");
+      }
       renderVideos();
     });
   });
 }
 
 async function fetchRssVideos() {
-  // 複数の中継サービス(CORSプロキシ)を順に試し、どれかで取得できれば使う
+  // ローカル開発では corsproxy.io が使える。allorigins は不安定なことがある
   const proxies = [
-    (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
     (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
-    (u) => "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u),
+    (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
     (u) => "https://api.allorigins.win/get?url=" + encodeURIComponent(u),
   ];
   for (const build of proxies) {
@@ -645,8 +683,15 @@ async function fetchRssVideos() {
 // クライアント取得時はタイトルから簡易に種別を推定（正確な判定はGitHub Actions側で実施）
 function guessType(title) {
   if (/#shorts|＃shorts/i.test(title)) return "short";
-  if (/配信|ライブ|live|🔴|生放送/i.test(title)) return "live";
+  if (/配信|ライブ|live|🔴|生放送|study with me/i.test(title)) return "live";
   return "video";
+}
+
+function resolveVideoType(v) {
+  if (v.type === "live" || v.type === "short") return v.type;
+  const guessed = guessType(v.title || "");
+  if (guessed !== "video") return guessed;
+  return v.type || "video";
 }
 
 function formatVideoDate(raw) {
@@ -683,34 +728,156 @@ function buildMarquee(track, videos) {
   const html = videos.map(cardHtml).join("");
   // 途切れないループのため2セット並べる（reduced-motion時は1セット＝手動スクロールのみ）
   track.innerHTML = REDUCED ? html : html + html;
-  applyMarqueeDuration(track);
   const marquee = $("#videos-marquee");
-  if (marquee) marquee.classList.remove("marquee--paused");
+  if (marquee) marquee.scrollLeft = 0;
 }
 
-function applyMarqueeDuration(track) {
-  if (REDUCED || !track) return;
-  track.style.removeProperty("--marquee-duration");
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const halfWidth = track.scrollWidth / 2;
-      if (halfWidth <= 0) return;
-      const duration = Math.max(halfWidth / MARQUEE_PX_PER_SEC, 60);
-      track.style.setProperty("--marquee-duration", duration.toFixed(1) + "s");
-    });
-  });
-}
-
-function initMarqueePause() {
+function initMarqueeScroll() {
   const marquee = $("#videos-marquee");
-  if (!marquee || marquee.dataset.pauseBound) return;
-  marquee.dataset.pauseBound = "1";
+  if (!marquee || marquee.dataset.scrollBound) return;
+  marquee.dataset.scrollBound = "1";
+
+  const isTouchLike = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  let paused = REDUCED || isTouchLike;
   let resumeTimer = 0;
-  const pause = () => {
+  let lastTime = 0;
+  let dragPointerId = null;
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+  let dragging = false;
+  let suppressClick = false;
+  let touchId = null;
+  let touchMoved = false;
+
+  const getHalf = () => {
+    const track = $("#videos-track");
+    return track ? track.scrollWidth / 2 : 0;
+  };
+
+  const wrapScroll = () => {
+    const half = getHalf();
+    if (half <= 0) return;
+    if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
+  };
+
+  const pause = (autoResumeMs = 4000) => {
+    paused = true;
     marquee.classList.add("marquee--paused");
     clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(() => marquee.classList.remove("marquee--paused"), 4000);
+    if (autoResumeMs >= 0) {
+      resumeTimer = setTimeout(() => {
+        if (!isTouchLike) {
+          paused = false;
+          marquee.classList.remove("marquee--paused");
+        }
+      }, autoResumeMs);
+    }
   };
-  marquee.addEventListener("touchstart", pause, { passive: true });
-  marquee.addEventListener("pointerdown", pause);
+
+  const tick = (now) => {
+    if (!REDUCED && !isTouchLike && !paused) {
+      const dt = lastTime ? (now - lastTime) / 1000 : 0;
+      if (dt > 0) {
+        marquee.scrollLeft += MARQUEE_PX_PER_SEC * dt;
+        wrapScroll();
+      }
+    }
+    lastTime = now;
+    requestAnimationFrame(tick);
+  };
+
+  marquee.addEventListener("scroll", wrapScroll, { passive: true });
+
+  marquee.addEventListener("wheel", (e) => {
+    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    e.preventDefault();
+    marquee.scrollLeft += e.deltaY;
+    wrapScroll();
+    pause();
+  }, { passive: false });
+
+  marquee.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0 || e.pointerType === "touch") return;
+    dragPointerId = e.pointerId;
+    dragStartX = e.clientX;
+    dragStartScroll = marquee.scrollLeft;
+    dragging = false;
+    pause(-1);
+  });
+
+  marquee.addEventListener("pointermove", (e) => {
+    if (dragPointerId !== e.pointerId) return;
+    const dx = e.clientX - dragStartX;
+    if (!dragging && Math.abs(dx) > 6) {
+      dragging = true;
+      suppressClick = true;
+      marquee.setPointerCapture(e.pointerId);
+    }
+    if (!dragging) return;
+    e.preventDefault();
+    marquee.scrollLeft = dragStartScroll - dx;
+    wrapScroll();
+  });
+
+  const endDrag = (e) => {
+    if (dragPointerId !== null && e && e.pointerId === dragPointerId && dragging) {
+      try { marquee.releasePointerCapture(e.pointerId); } catch { /* noop */ }
+    }
+    const wasDragging = dragging;
+    dragPointerId = null;
+    dragging = false;
+    if (wasDragging) pause(4000);
+  };
+
+  marquee.addEventListener("pointerup", endDrag);
+  marquee.addEventListener("pointercancel", endDrag);
+
+  marquee.addEventListener("click", (e) => {
+    if (suppressClick) {
+      e.preventDefault();
+      e.stopPropagation();
+      suppressClick = false;
+    }
+  }, true);
+
+  // スマホ: リンク上でも横スワイプできるよう touch で直接 scrollLeft を動かす
+  marquee.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) return;
+    touchId = e.touches[0].identifier;
+    touchStartX = e.touches[0].clientX;
+    touchStartScroll = marquee.scrollLeft;
+    touchMoved = false;
+  }, { passive: true });
+
+  marquee.addEventListener("touchmove", (e) => {
+    const t = Array.from(e.touches).find((touch) => touch.identifier === touchId);
+    if (!t) return;
+    const dx = t.clientX - touchStartX;
+    if (!touchMoved && Math.abs(dx) > 8) touchMoved = true;
+    if (!touchMoved) return;
+    marquee.scrollLeft = touchStartScroll - dx;
+    wrapScroll();
+  }, { passive: true });
+
+  const endTouch = () => {
+    if (touchMoved) suppressClick = true;
+    touchId = null;
+    touchMoved = false;
+  };
+
+  marquee.addEventListener("touchend", endTouch, { passive: true });
+  marquee.addEventListener("touchcancel", endTouch, { passive: true });
+
+  if (!isTouchLike) {
+    marquee.addEventListener("mouseenter", () => pause(-1));
+    marquee.addEventListener("mouseleave", () => {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        paused = false;
+        marquee.classList.remove("marquee--paused");
+      }, 4000);
+    });
+  }
+
+  if (!REDUCED && !isTouchLike) requestAnimationFrame(tick);
 }

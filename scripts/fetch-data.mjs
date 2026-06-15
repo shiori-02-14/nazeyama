@@ -12,8 +12,10 @@ const CHANNEL_ID = "UCMn-qF0yqH-07bEJBaWUL5A";
 const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 const CHANNEL_VIDEOS_URL = `https://www.youtube.com/channel/${CHANNEL_ID}/videos`;
 const CHANNEL_SHORTS_URL = `https://www.youtube.com/channel/${CHANNEL_ID}/shorts`;
+const CHANNEL_STREAMS_URL = `https://www.youtube.com/channel/${CHANNEL_ID}/streams`;
 const VIDEO_LIMIT = 30;
 const SHORTS_LIMIT = 30;
+const STREAMS_LIMIT = 30;
 const FETCH_HEADERS = {
   "accept-language": "ja",
   "User-Agent":
@@ -175,7 +177,7 @@ function parseVideoType(html, id) {
   return "video";
 }
 
-async function fetchVideoMeta(id, hintType = "video") {
+async function fetchVideoMeta(id, hintType = "video", forceLive = false) {
   let type = hintType;
   let viewCount = null;
   let published = "";
@@ -187,7 +189,7 @@ async function fetchVideoMeta(id, hintType = "video") {
       viewCount = parseViewCount(html);
       published = parseUploadDate(html);
       title = parseTitle(html);
-      type = parseVideoType(html, id);
+      type = forceLive || hintType === "live" ? "live" : parseVideoType(html, id);
     }
   } catch {}
   return { type, viewCount, published, title };
@@ -199,11 +201,26 @@ function walkLockupViewModels(node, out) {
     const lv = node.lockupViewModel;
     const id =
       lv.onTap?.innertubeCommand?.watchEndpoint?.videoId ||
+      lv.contentId ||
       lv.contentImage?.thumbnailViewModel?.image?.sources?.[0]?.url?.match(/vi\/([^/]+)/)?.[1];
     const title = lv.metadata?.lockupMetadataViewModel?.title?.content;
     if (id) out.push({ videoId: id, title: title || "", membersOnly: isMembersOnlyLockup(lv) });
   }
   for (const key of Object.keys(node)) walkLockupViewModels(node[key], out);
+}
+
+function walkStreamsLockupViewModels(node, out) {
+  if (!node || typeof node !== "object") return;
+  if (node.lockupViewModel?.contentId) {
+    const lv = node.lockupViewModel;
+    out.push({
+      videoId: lv.contentId,
+      title: lv.metadata?.lockupMetadataViewModel?.title?.content || "",
+      membersOnly: isMembersOnlyLockup(lv),
+      type: "live",
+    });
+  }
+  for (const key of Object.keys(node)) walkStreamsLockupViewModels(node[key], out);
 }
 
 function walkShortsLockupViewModels(node, out) {
@@ -255,6 +272,10 @@ async function fetchChannelShortsList() {
   return fetchChannelPageList(CHANNEL_SHORTS_URL, walkShortsLockupViewModels, SHORTS_LIMIT);
 }
 
+async function fetchChannelStreamsList() {
+  return fetchChannelPageList(CHANNEL_STREAMS_URL, walkStreamsLockupViewModels, STREAMS_LIMIT);
+}
+
 async function fetchRssMap() {
   const map = new Map();
   try {
@@ -278,13 +299,23 @@ async function fetchVideos() {
   const prev = await readJson("data/videos.json", { videos: [] });
   const prevMap = Object.fromEntries((prev.videos || []).map((v) => [v.videoId, v]));
   const rssMap = await fetchRssMap();
-  const [videoList, shortsList] = await Promise.all([
+  const [videoList, shortsList, streamsList] = await Promise.all([
     fetchChannelVideoList(),
     fetchChannelShortsList(),
+    fetchChannelStreamsList(),
   ]);
+  const liveIds = new Set(streamsList.map((s) => s.videoId));
   let channelList = [...videoList];
   const seen = new Set(channelList.map((v) => v.videoId));
+  for (const item of channelList) {
+    if (liveIds.has(item.videoId)) item.type = "live";
+  }
   for (const item of shortsList) {
+    if (seen.has(item.videoId)) continue;
+    seen.add(item.videoId);
+    channelList.push(item);
+  }
+  for (const item of streamsList) {
     if (seen.has(item.videoId)) continue;
     seen.add(item.videoId);
     channelList.push(item);
@@ -297,7 +328,7 @@ async function fetchVideos() {
   }
 
   const prevCount = (prev.videos || []).length;
-  const channelFetched = videoList.length + shortsList.length;
+  const channelFetched = videoList.length + shortsList.length + streamsList.length;
 
   // チャンネルページが取れないときは RSS の15件にフォールバック
   if (!channelList.length) {
@@ -321,13 +352,14 @@ async function fetchVideos() {
       thumbnail: `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`,
       published: rss?.published || prevVideo.published || "",
       membersOnly: membersOnly ?? prevVideo.membersOnly ?? false,
-      type: hintType || prevVideo.type || "video",
+      type: hintType || (liveIds.has(videoId) ? "live" : "") || prevVideo.type || "video",
     };
   }).filter((v) => v.videoId);
 
   await mapPool(videos, async (v) => {
-    const meta = await fetchVideoMeta(v.videoId, v.type);
-    v.type = meta.type;
+    const isLive = v.type === "live" || liveIds.has(v.videoId);
+    const meta = await fetchVideoMeta(v.videoId, v.type, isLive);
+    v.type = isLive ? "live" : meta.type;
     if (meta.viewCount != null) {
       v.viewCount = meta.viewCount;
       v.views = formatViews(meta.viewCount);
@@ -382,7 +414,12 @@ async function readJson(path, fallback) {
 try {
   const videos = await fetchVideos();
   if (videos.length) {
-    await writeFile("data/videos.json", JSON.stringify({ updated: today, source: "youtube-channel", videos }, null, 2) + "\n");
+    const payload = { updated: today, source: "youtube-channel", videos };
+    await writeFile("data/videos.json", JSON.stringify(payload, null, 2) + "\n");
+    await writeFile(
+      "data/videos.js",
+      "// Auto-generated by scripts/fetch-data.mjs\nwindow.__NAZEYAMA_VIDEOS__ = " + JSON.stringify(payload) + ";\n"
+    );
     console.log(`videos updated: ${videos.length} items`);
   } else {
     console.warn("no videos parsed; keeping existing data/videos.json");
