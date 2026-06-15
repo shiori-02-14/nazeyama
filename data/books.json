@@ -1,0 +1,72 @@
+{
+  "updated": "2026-06-15",
+  "source": "amazon-search",
+  "novels": {
+    "items": [
+      {
+        "title": "十角館の殺人",
+        "author": "綾辻行人",
+        "asin": "B00CE3T6OC",
+        "coverUrl": "https://m.media-amazon.com/images/I/81IJXzdIndL._AC_SL500_.jpg"
+      },
+      {
+        "title": "時計館の殺人",
+        "author": "綾辻行人",
+        "asin": "B07GBPTJXH",
+        "coverUrl": "https://m.media-amazon.com/images/I/51f7JuvohdL._AC_SL500_.jpg"
+      },
+      {
+        "title": "迷路館の殺人",
+        "author": "綾辻行人",
+        "asin": "B00L4XTJUE",
+        "coverUrl": "https://m.media-amazon.com/images/I/810d8PQ85jL._AC_SL500_.jpg"
+      },
+      {
+        "title": "人形館の殺人",
+        "author": "綾辻行人",
+        "asin": "B00L4XTJVS",
+        "coverUrl": "https://m.media-amazon.com/images/I/81eG80g0mAL._AC_SL500_.jpg"
+      },
+      {
+        "title": "Another",
+        "author": "綾辻行人",
+        "asin": "4041000017",
+        "coverUrl": "https://m.media-amazon.com/images/I/41-MlfibiPL._AC_SL500_.jpg"
+      }
+    ]
+  },
+  "exam": {
+    "items": [
+      {
+        "title": "詳解 力学演習",
+        "author": "—",
+        "asin": "4320030257",
+        "coverUrl": "https://m.media-amazon.com/images/I/51AZg2RHXrL._AC_SL500_.jpg"
+      },
+      {
+        "title": "ジャクソン 電磁気学",
+        "author": "J. D. Jackson",
+        "asin": "4842703083",
+        "coverUrl": "https://m.media-amazon.com/images/I/81SZBekwqgL._AC_SL500_.jpg"
+      },
+      {
+        "title": "現代の量子力学",
+        "author": "J. J. サクライ",
+        "asin": "4842703768",
+        "coverUrl": "https://m.media-amazon.com/images/I/717UBSXLJQL._AC_SL500_.jpg"
+      },
+      {
+        "title": "古典力学",
+        "author": "ゴールドスタイン",
+        "asin": "4842703369",
+        "coverUrl": "https://m.media-amazon.com/images/I/41815BACkhL._AC_SL500_.jpg"
+      },
+      {
+        "title": "統計力学",
+        "author": "田崎晴明",
+        "asin": "4563024384",
+        "coverUrl": "https://m.media-amazon.com/images/I/81PL0l0FooL._AC_SL500_.jpg"
+      }
+    ]
+  }
+}

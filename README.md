@@ -95,7 +95,8 @@ contact:
 
 | ファイル | 用途 |
 | --- | --- |
-| `neko.png` | ネッコの写真 |
+| `physicsneko.png` | ネッコの写真 |
+| `nazeyama.jpg` | ロゴ（砂山の少年） |
 | `hero.png` | トップのキービジュアル |
 | `ogp.png` | X などでシェアしたときのサムネ（1200×630） |
 

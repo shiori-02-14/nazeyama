@@ -5,6 +5,7 @@
 //  - 取得できない値は前回値を保持（推測で埋めない＝ファクトチェック方針）
 // =========================================================
 import { writeFile, readFile } from "node:fs/promises";
+import { fetchBooks } from "./fetch-books.mjs";
 
 const CHANNEL_ID = "UCMn-qF0yqH-07bEJBaWUL5A";
 const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
@@ -405,4 +406,11 @@ try {
   console.log("stats updated; subscribers =", stats.subscribers);
 } catch (e) {
   console.error("stats failed:", e.message);
+}
+
+// --- books (covers & ASIN) ---
+try {
+  await fetchBooks();
+} catch (e) {
+  console.error("books failed:", e.message);
 }

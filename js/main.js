@@ -27,13 +27,9 @@ const DEFAULTS = {
     membership_url: "https://www.youtube.com/channel/" + CHANNEL_ID + "/join",
   },
   profile: {
-    heading: "プロフィール",
-    lines: [
-      "宅浪(n=1) → 筑波大学 理工学群物理学類 卒業（2026年3月・学士）",
-      "→ 大学院で物理学修士1年（外部院進）",
-      "ちょっとYouTuber。物弱なりに物理学科で頑張っています。",
-      "猫とミステリー小説が好きです。",
-    ],
+    path: ["宅浪(n=1)", "筑波大学卒業", "物理修士1年"],
+    bio: "双極性障害と付き合いながら、物弱なりに物理学科で頑張っています。📚✍🏻",
+    likes: "猫とミステリー小説が好きです。🐱",
     birthday: "11月16日",
     origin: "「Because it's there.（なぜ山に登るのか → そこに山があるから）」が名前の由来です。",
   },
@@ -157,8 +153,11 @@ async function init() {
   setupReveal();
 
   if (PAGE === "books") {
-    const booksRaw = await loadYaml("content/books.yaml");
-    renderBooks(booksRaw || BOOKS_DEFAULTS, site);
+    const [booksRaw, booksMeta] = await Promise.all([
+      loadYaml("content/books.yaml"),
+      loadJson("data/books.json"),
+    ]);
+    renderBooks(mergeBooksMeta(booksRaw || BOOKS_DEFAULTS, booksMeta), site);
     return;
   }
 
@@ -210,12 +209,27 @@ function applyDisplay(display) {
 
 /* ---------------- renderers ---------------- */
 function renderHero(s) {
-  setText("#hero-name", s.site.title);
-  setText("#hero-title", s.site.tagline);
-  setText("#hero-title-sub", s.site.tagline_sub);
-  setText("#hero-sub", s.site.subcopy);
+  setText("#hero-title", s.site.title);
+  setText("#hero-name", s.site.tagline);
+  renderHeroProfile(s.profile);
   setHref("#hero-cta", s.youtube.channel_url);
   setHref("#nav-cta", s.youtube.channel_url);
+}
+
+function renderHeroProfile(p) {
+  const el = $("#hero-profile");
+  if (!el || !p) return;
+  const path = Array.isArray(p.path) ? p.path : [];
+  const pathHtml = path.map((item, i) => {
+    const sep = i > 0 ? '<span class="hero__path-sep" aria-hidden="true">→</span>' : "";
+    return sep + '<span class="hero__path-item">' + esc(item) + "</span>";
+  }).join("");
+  const parts = [];
+  if (pathHtml) parts.push('<div class="hero__path">' + pathHtml + "</div>");
+  if (p.role) parts.push('<span class="hero__tag">' + esc(p.role) + "</span>");
+  if (p.bio) parts.push('<p class="hero__bio">' + esc(p.bio) + "</p>");
+  if (p.likes) parts.push('<p class="hero__likes">' + esc(p.likes) + "</p>");
+  el.innerHTML = parts.join("");
 }
 
 function snsIcon(name) {
@@ -276,6 +290,31 @@ function renderContact(s) {
   }
 }
 
+function bookMetaKey(b) {
+  return String(b.title || "").trim() + "\0" + String(b.author || "").trim();
+}
+
+function mergeBooksMeta(books, meta) {
+  if (!books || !meta) return books;
+  const out = structuredCloneSafe(books);
+  for (const key of ["novels", "exam"]) {
+    const items = out[key]?.items;
+    const metaItems = meta[key]?.items;
+    if (!Array.isArray(items) || !Array.isArray(metaItems)) continue;
+    const map = new Map(metaItems.map((b) => [bookMetaKey(b), b]));
+    out[key].items = items.map((b) => {
+      const m = map.get(bookMetaKey(b));
+      if (!m) return b;
+      return {
+        ...b,
+        asin: b.asin || m.asin || "",
+        coverUrl: m.coverUrl || b.coverUrl || "",
+      };
+    });
+  }
+  return out;
+}
+
 function renderBooks(books, site) {
   const tag = (site.affiliate && site.affiliate.amazon_tag) || "";
   renderBookGrid("#books-novels", books.novels, tag);
@@ -296,9 +335,12 @@ function renderBookGrid(sel, cat, tag) {
     const btn = hasLink
       ? '<a class="bcard__btn" href="' + esc(url) + '" target="_blank" rel="noopener nofollow sponsored">Amazonで見る</a>'
       : '<span class="bcard__btn bcard__btn--disabled">準備中</span>';
+    const cover = b.coverUrl
+      ? '<img class="bcard__cover-img" src="' + esc(b.coverUrl) + '" alt="' + esc(b.title + "の表紙") + '" loading="lazy" decoding="async">'
+      : esc(b.title);
     return (
       '<div class="bcard">' +
-      '<div class="bcard__cover">' + esc(b.title) + "</div>" +
+      '<div class="bcard__cover' + (b.coverUrl ? " bcard__cover--img" : "") + '">' + cover + "</div>" +
       '<h4 class="bcard__title">' + esc(b.title) + "</h4>" +
       '<p class="bcard__author">' + esc(b.author || "") + "</p>" +
       '<p class="bcard__comment">' + esc(b.comment || "") + "</p>" +

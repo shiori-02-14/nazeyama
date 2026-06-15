@@ -13,8 +13,8 @@
   <meta property="og:image" content="assets/images/ogp.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- favicon (絵文字。後で assets/images に差し替え可) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛰️</text></svg>" />
+  <link rel="icon" href="assets/images/nazeyama.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="assets/images/nazeyama.jpg" />
 
   <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +34,7 @@
   <!-- ===== nav ===== -->
   <header class="nav">
     <div class="nav__inner">
-      <a class="nav__logo" href="index.html"><span>n</span>azeyama</a>
+      <a class="nav__logo" href="index.html"><img class="nav__logo-icon" src="assets/images/nazeyama.jpg" alt="" width="32" height="32" /><span class="nav__logo-text"><span>n</span>azeyama</span></a>
       <button class="nav__toggle" aria-label="メニュー" aria-expanded="false" aria-controls="nav-menu">☰</button>
       <div class="nav__menu" id="nav-menu">
         <ul class="nav__links">
@@ -56,17 +56,21 @@
           <div class="hero__board">
             <div class="hero__grid">
               <div class="hero__copy">
-                <p class="hero__name" id="hero-name">nazeyama</p>
-                <h1 class="hero__title" id="hero-title">Because it's there.</h1>
-                <p class="hero__sub" id="hero-sub">ほんのり物理が香る、にゃんこの日常</p>
-                <div class="hero__stats">
-                  <div class="stat"><div class="stat__num" id="stat-subs">35,293</div><div class="stat__label">登録者</div></div>
-                  <div class="stat"><div class="stat__num" id="stat-views">7,751,078</div><div class="stat__label">総再生</div></div>
+                <div class="hero__intro">
+                  <h1 class="hero__title" id="hero-title">nazeyama</h1>
+                  <p class="hero__name" id="hero-name">Because it's there.</p>
                 </div>
-                <a class="hero__cta" id="hero-cta" href="https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A" target="_blank" rel="noopener">▶ チャンネル登録</a>
+                <div class="hero__profile" id="hero-profile" aria-label="プロフィール"></div>
+                <div class="hero__actions">
+                  <div class="hero__stats">
+                    <div class="stat"><div class="stat__num" id="stat-subs">35,293</div><div class="stat__label">登録者</div></div>
+                    <div class="stat"><div class="stat__num" id="stat-views">7,751,078</div><div class="stat__label">総再生</div></div>
+                  </div>
+                  <a class="hero__cta" id="hero-cta" href="https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A" target="_blank" rel="noopener">▶ チャンネル登録</a>
+                </div>
               </div>
               <div class="hero__art">
-                <img class="hero__icon" src="assets/images/yama.jpg" alt="nazeyama のアイコン" width="358" height="358" loading="lazy" />
+                <img class="hero__icon" src="assets/images/nazeyama.jpg" alt="nazeyama のアイコン（砂山の少年）" width="358" height="358" loading="lazy" />
               </div>
             </div>
           </div>
@@ -101,7 +105,7 @@
         <h2 class="section__title"><span class="sym">🐾</span><span class="underline-chalk">物理屋のネッコ</span></h2>
         <div class="neko__wrap">
           <div class="neko__art">
-            <img class="neko__img" src="assets/images/neko.png" alt="物理屋のネッコ（nazeyama公式LINEスタンプのキャラクター）" width="240" height="240" loading="lazy" />
+            <img class="neko__img" src="assets/images/physicsneko.png" alt="物理屋のネッコ（nazeyama公式LINEスタンプのキャラクター）" width="240" height="240" loading="lazy" />
           </div>
           <div class="neko__text">
             <h3 id="neko-name">物理屋のネッコ / nazeyama</h3>

@@ -24,13 +24,12 @@ youtube:
   membership_url: "https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A/join"
 
 profile:
-  heading: "プロフィール"
-  # 出典: X @nazeyama__ プロフィール / 固定ポスト(2026-03-30)
-  lines:
-    - "宅浪(n=1) → 筑波大学 理工学群物理学類 卒業（2026年3月・学士）"
-    - "→ 大学院で物理学修士1年（外部院進）"
-    - "ちょっとYouTuber。物弱なりに物理学科で頑張っています。"
-    - "猫とミステリー小説が好きです。"
+  path:
+    - "宅浪(n=1)"
+    - "筑波大学卒業"
+    - "物理修士1年"
+  bio: "双極性障害と付き合いながら、物弱なりに物理学科で頑張っています。📚✍🏻"
+  likes: "猫とミステリー小説が好きです。🐱"
   birthday: "11月16日"
   origin: "「Because it's there.（なぜ山に登るのか → そこに山があるから）」が名前の由来です。"
 
