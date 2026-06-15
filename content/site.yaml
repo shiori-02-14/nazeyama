@@ -12,8 +12,32 @@
 
 site:
   title: "nazeyama"
-  tagline: "Because it's there."          # ヒーローの小さい文字
-  subcopy: "ほんのり物理が香る、にゃんこの日常"  # 説明文（検索・SNSシェア用）
+  tagline: "Because it's there."  # ヒーローの小さい文字・ページタイトルにも使う
+  # 公開URL（GitHub Pages）
+  url: "https://shiori-02-14.github.io/nazeyama/"
+  # 検索・LINE/Xシェア用（サイト上の黒板とは別でOK）
+  seo:
+    title: "物理系YouTuber nazeyama【公式サイト】"
+    description: "YouTubeチャンネル nazeyama（ナゼヤマ）の公式ホームページです。物理・受験生・大学生・大学院生向けの動画紹介やおすすめの参考書を掲載しています。"
+    keywords:
+      - nazeyama
+      - ナゼヤマ
+      - nazeyama YouTube
+      - 物理 YouTuber
+      - 理系 YouTuber
+      - 受験生
+      - 大学生
+      - 大学院生
+      - 物理
+      - 物理大学生
+      - 物理大学院生
+      - リケジョ
+      - 理系女子
+      - 大学院 物理
+      - 筑波大学
+      - 物理 勉強
+    books_title: "おすすめの本"
+    books_description: "nazeyama のおすすめ小説・院試参考書。理系・物理の読書リスト。"
 
 
 # ── ② 画像（assets/images/ に置いたファイル名） ─────────

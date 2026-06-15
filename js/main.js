@@ -16,7 +16,12 @@ const MARQUEE_PX_PER_SEC = 26;
 
 /* YAML 読み込み失敗時の最小フォールバック（file:// プレビュー用） */
 const MIN_DEFAULTS = {
-  site: { title: "nazeyama", tagline: "", subcopy: "" },
+  site: {
+    title: "nazeyama",
+    tagline: "",
+    url: "",
+    seo: { title: "", description: "", keywords: [], books_title: "おすすめの本", books_description: "" },
+  },
   images: { logo: "assets/images/nazeyama.jpg", neko: "assets/images/physicsneko.png" },
   youtube: { channel_id: CHANNEL_ID },
   profile: {},
@@ -90,6 +95,7 @@ async function init() {
   const site = normalizeSite(mergeDeep(structuredCloneSafe(MIN_DEFAULTS), siteRaw || {}));
 
   applyImages(site.images);
+  applySeoMeta(site);
   applyDisplay(site.display || {});
   renderFooter(site);
   setHref("#nav-cta", site.youtube.channel_url);
@@ -155,6 +161,93 @@ function applyImages(images) {
     const og = $('meta[property="og:image"]');
     if (og) og.setAttribute("content", images.ogp);
   }
+}
+
+function setMetaTag(name, content, prop) {
+  if (!content) return;
+  const sel = prop
+    ? 'meta[property="' + name + '"]'
+    : 'meta[name="' + name + '"]';
+  let el = document.head.querySelector(sel);
+  if (!el) {
+    el = document.createElement("meta");
+    if (prop) el.setAttribute("property", name);
+    else el.setAttribute("name", name);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+}
+
+function absAssetUrl(base, path) {
+  if (!path) return "";
+  if (/^https?:\/\//i.test(path)) return path;
+  if (!base) return path;
+  return base.replace(/\/?$/, "/") + path.replace(/^\//, "");
+}
+
+function applySeoMeta(site) {
+  const s = site.site || {};
+  const seo = s.seo || {};
+  const keywords = Array.isArray(seo.keywords) ? seo.keywords.join(", ") : "";
+  const isBooks = PAGE === "books";
+  const title = isBooks
+    ? (seo.books_title || "おすすめの本") + "｜" + (s.title || "nazeyama")
+    : seo.title || (s.title || "nazeyama") + "｜" + (s.tagline || "");
+  const description = isBooks
+    ? seo.books_description || ""
+    : seo.description || "";
+  document.title = title;
+  setMetaTag("description", description);
+  setMetaTag("keywords", keywords);
+  setMetaTag("og:title", title, true);
+  setMetaTag("og:description", description, true);
+  setMetaTag("og:site_name", s.title || "nazeyama", true);
+  setMetaTag("twitter:title", title);
+  setMetaTag("twitter:description", description);
+  const ogImage = absAssetUrl(s.url, site.images?.ogp || site.images?.logo);
+  if (ogImage) {
+    setMetaTag("og:image", ogImage, true);
+    setMetaTag("twitter:image", ogImage);
+  }
+  if (s.url) {
+    const base = s.url.replace(/\/?$/, "/");
+    const pageUrl = isBooks ? base + "books.html" : base;
+    setMetaTag("og:url", pageUrl, true);
+    const canonical = pageUrl;
+    let link = document.head.querySelector('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.setAttribute("rel", "canonical");
+      document.head.appendChild(link);
+    }
+    link.setAttribute("href", canonical);
+  }
+  injectJsonLd(site, description);
+}
+
+function injectJsonLd(site, description) {
+  const s = site.site || {};
+  const sameAs = (site.sns || []).map((x) => x.url).filter(Boolean);
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: s.title || "nazeyama",
+    description: description || "",
+    url: s.url || undefined,
+    sameAs: sameAs.length ? sameAs : undefined,
+    jobTitle: "YouTuber",
+    knowsAbout: ["物理学", "大学院", "理系"],
+  };
+  if (!data.url) delete data.url;
+  if (!data.sameAs) delete data.sameAs;
+  let el = document.getElementById("jsonld-person");
+  if (!el) {
+    el = document.createElement("script");
+    el.id = "jsonld-person";
+    el.type = "application/ld+json";
+    document.head.appendChild(el);
+  }
+  el.textContent = JSON.stringify(data);
 }
 
 /* ---------------- display toggle ---------------- */

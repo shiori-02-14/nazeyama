@@ -1,12 +1,15 @@
 name: Validate content YAML
 
-# content/*.yaml の構文チェック。壊れたYAMLがpushされても気づけるようにします。
+# content/site.yaml の構文チェック + 検索用タグの HTML 反映
 on:
   push:
     paths: ["content/**.yaml"]
   pull_request:
     paths: ["content/**.yaml"]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   validate:
@@ -34,3 +37,18 @@ jobs:
             }
             if (!ok) process.exit(1);
           '
+
+      - name: Sync SEO meta to HTML
+        run: node scripts/sync-seo.mjs
+
+      - name: Commit SEO changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html books.html sitemap.xml robots.txt 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No SEO changes."
+          else
+            git commit -m "chore: sync SEO from site.yaml [skip ci]"
+            git push
+          fi

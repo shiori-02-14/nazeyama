@@ -21,7 +21,7 @@
 
 | 番号 | 内容 | 例 |
 | --- | --- | --- |
-| ① | サイト名・キャッチコピー | `tagline:` |
+| ① | サイト名・キャッチ・**検索キーワード** | `tagline:` / `seo:` |
 | ② | 画像ファイル名 | `logo:` / `neko:` |
 | ③ | YouTube チャンネル | `channel_id:` |
 | ④ | プロフィール | `path:` / `bio:` |
@@ -58,6 +58,10 @@ display:
 ```
 
 **TikTok を載せる** → ⑤の TikTok 3行の `#` を外す
+
+**Google でヒットさせたい言葉** → ① `seo:` の `keywords:` に追加（例: リケジョ）
+
+**公開URLを設定** → ① `site.url:` に GitHub Pages のアドレスを入れる（sitemap 生成用）
 
 **画像を差し替える** → `assets/images/` に同名ファイルを上書き  
 ファイル名を変えたときだけ ② `images:` を更新
