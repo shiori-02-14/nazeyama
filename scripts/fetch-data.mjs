@@ -6,6 +6,7 @@
 // =========================================================
 import { writeFile, readFile } from "node:fs/promises";
 import { fetchBooks } from "./fetch-books.mjs";
+import { syncSeo } from "./sync-seo.mjs";
 
 const CHANNEL_ID = "UCMn-qF0yqH-07bEJBaWUL5A";
 const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
@@ -413,4 +414,11 @@ try {
   await fetchBooks();
 } catch (e) {
   console.error("books failed:", e.message);
+}
+
+// --- SEO (検索・LINEシェア用タグ) ---
+try {
+  await syncSeo();
+} catch (e) {
+  console.error("seo sync failed:", e.message);
 }

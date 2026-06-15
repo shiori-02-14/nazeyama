@@ -1,5 +1,6 @@
 // site.yaml の検索設定を index.html / books.html に反映（GitHub Actions 用）
 import { readFile, writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 
 function parseSiteYaml(src) {
   const site = { title: "nazeyama", tagline: "", url: "", seo: {} };
@@ -144,30 +145,38 @@ Sitemap: ${root}sitemap.xml
   await writeFile("robots.txt", robots);
 }
 
-const src = await readFile("content/site.yaml", "utf8");
-const site = parseSiteYaml(src);
-const keywords = site.seo.keywords.join(", ");
-const homeTitle = site.seo.title;
-const booksTitle = `${site.seo.books_title}｜${site.title}`;
-const ogImage = absUrl(site.url, site.logo);
-const homeUrl = site.url ? site.url.replace(/\/?$/, "/") : "";
+export async function syncSeo() {
+  const src = await readFile("content/site.yaml", "utf8");
+  const site = parseSiteYaml(src);
+  const keywords = site.seo.keywords.join(", ");
+  const homeTitle = site.seo.title;
+  const booksTitle = `${site.seo.books_title}｜${site.title}`;
+  const ogImage = absUrl(site.url, site.logo);
+  const homeUrl = site.url ? site.url.replace(/\/?$/, "/") : "";
 
-await syncPage("index.html", {
-  title: homeTitle,
-  description: site.seo.description,
-  keywords,
-  canonical: homeUrl,
-  ogImage,
-  ogUrl: homeUrl,
-});
-await syncPage("books.html", {
-  title: booksTitle,
-  description: site.seo.books_description,
-  keywords,
-  canonical: homeUrl + "books.html",
-  ogImage,
-  ogUrl: homeUrl + "books.html",
-});
-await syncSitemap(site.url);
+  await syncPage("index.html", {
+    title: homeTitle,
+    description: site.seo.description,
+    keywords,
+    canonical: homeUrl,
+    ogImage,
+    ogUrl: homeUrl,
+  });
+  await syncPage("books.html", {
+    title: booksTitle,
+    description: site.seo.books_description,
+    keywords,
+    canonical: homeUrl + "books.html",
+    ogImage,
+    ogUrl: homeUrl + "books.html",
+  });
+  await syncSitemap(site.url);
+  console.log("SEO synced:", homeTitle);
+}
 
-console.log("SEO synced:", homeTitle);
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  syncSeo().catch((e) => {
+    console.error("seo sync failed:", e.message);
+    process.exitCode = 1;
+  });
+}
