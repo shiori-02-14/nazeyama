@@ -18,7 +18,7 @@ site:
   # 検索・LINE/Xシェア用（サイト上の黒板とは別でOK）
   seo:
     title: "物理系YouTuber nazeyama【公式サイト】"
-    description: "YouTubeチャンネル nazeyama（ナゼヤマ）の公式ホームページです。物理・受験生・大学生・大学院生向けの動画紹介やおすすめの参考書を掲載しています。"
+    description: "YouTubeチャンネル nazeyamaの公式ホームページです。物理・受験生・大学生・大学院生向けの動画紹介やおすすめの参考書を掲載しています。"
     keywords:
       - nazeyama
       - ナゼヤマ
