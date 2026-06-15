@@ -3,6 +3,39 @@
   "source": "youtube-channel",
   "videos": [
     {
+      "title": "今日こそお話しよう🍻",
+      "videoId": "6UmUbkiDo3k",
+      "url": "https://www.youtube.com/watch?v=6UmUbkiDo3k",
+      "views": "3,776回",
+      "viewCount": 3776,
+      "thumbnail": "https://i.ytimg.com/vi/6UmUbkiDo3k/mqdefault.jpg",
+      "published": "2026-06-13",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
+      "title": "理系大学院生のバイトして研究室にいく土曜日VLOG #vlog #物理学科",
+      "videoId": "d6n2Vscd0AI",
+      "url": "https://www.youtube.com/shorts/d6n2Vscd0AI",
+      "views": "7,949回",
+      "viewCount": 7949,
+      "thumbnail": "https://i.ytimg.com/vi/d6n2Vscd0AI/mqdefault.jpg",
+      "published": "2026-06-11",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
+      "title": "理系大学院生の物理が出来ない日常 #理系 #vlog #物理学科 #理系大学生 #大学院生",
+      "videoId": "B4Bh9X4J4IQ",
+      "url": "https://www.youtube.com/shorts/B4Bh9X4J4IQ",
+      "views": "11,293回",
+      "viewCount": 11293,
+      "thumbnail": "https://i.ytimg.com/vi/B4Bh9X4J4IQ/mqdefault.jpg",
+      "published": "2026-06-08",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
       "title": "【高校同期旅】四国旅行に行ったよ✈️🍊🥢/讃岐うどん、みかんジュース、道後温泉！♨️🧳",
       "videoId": "k7BZMwYLdVw",
       "url": "https://www.youtube.com/watch?v=k7BZMwYLdVw",
@@ -12,6 +45,28 @@
       "published": "2026-06-03",
       "membersOnly": true,
       "type": "video"
+    },
+    {
+      "title": "5月もお疲れ様配信！🌕✨️",
+      "videoId": "M6bErltFEq8",
+      "url": "https://www.youtube.com/watch?v=M6bErltFEq8",
+      "views": "4,243回",
+      "viewCount": 4243,
+      "thumbnail": "https://i.ytimg.com/vi/M6bErltFEq8/mqdefault.jpg",
+      "published": "2026-06-01",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
+      "title": "Study with me/ 理系大学院生と一緒に勉強するとかどうー？/作業用配信",
+      "videoId": "2u5SU2qSliE",
+      "url": "https://www.youtube.com/watch?v=2u5SU2qSliE",
+      "views": "3,781回",
+      "viewCount": 3781,
+      "thumbnail": "https://i.ytimg.com/vi/2u5SU2qSliE/mqdefault.jpg",
+      "published": "2026-05-28",
+      "membersOnly": false,
+      "type": "live"
     },
     {
       "title": "キャパオーバーした時の私を分析した。そして、物理できない、、。",
@@ -36,6 +91,17 @@
       "type": "video"
     },
     {
+      "title": "ポンコツ物理学徒の1日 #理系 #vlog #物理学科",
+      "videoId": "a8E_iJFyicM",
+      "url": "https://www.youtube.com/shorts/a8E_iJFyicM",
+      "views": "12,339回",
+      "viewCount": 12339,
+      "thumbnail": "https://i.ytimg.com/vi/a8E_iJFyicM/mqdefault.jpg",
+      "published": "2026-05-15",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
       "title": "外部院試について/東京大学・東京科学大学・筑波大学/物理",
       "videoId": "dFwgXXzJucA",
       "url": "https://www.youtube.com/watch?v=dFwgXXzJucA",
@@ -45,6 +111,50 @@
       "published": "2026-05-10",
       "membersOnly": false,
       "type": "video"
+    },
+    {
+      "title": "ONICHA飲むだけ",
+      "videoId": "-nXQdH-OZLw",
+      "url": "https://www.youtube.com/shorts/-nXQdH-OZLw",
+      "views": "",
+      "viewCount": 0,
+      "thumbnail": "https://i.ytimg.com/vi/-nXQdH-OZLw/mqdefault.jpg",
+      "published": "2026-05-09",
+      "membersOnly": true,
+      "type": "short"
+    },
+    {
+      "title": "スマホいじり防止の勉強ラジオ配信",
+      "videoId": "WeL8rwmiYe8",
+      "url": "https://www.youtube.com/watch?v=WeL8rwmiYe8",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/WeL8rwmiYe8/mqdefault.jpg",
+      "published": "2026-05-09",
+      "membersOnly": true,
+      "type": "live"
+    },
+    {
+      "title": "五月も頑張っていきたい華金配信だ～～！物理学徒のゲリラ配信！",
+      "videoId": "fJjluMgORk4",
+      "url": "https://www.youtube.com/watch?v=fJjluMgORk4",
+      "views": "4,582回",
+      "viewCount": 4582,
+      "thumbnail": "https://i.ytimg.com/vi/fJjluMgORk4/mqdefault.jpg",
+      "published": "2026-05-08",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
+      "title": "もう勉強に全振りするからいいです",
+      "videoId": "v4DFTobPj30",
+      "url": "https://www.youtube.com/shorts/v4DFTobPj30",
+      "views": "13,178回",
+      "viewCount": 13178,
+      "thumbnail": "https://i.ytimg.com/vi/v4DFTobPj30/mqdefault.jpg",
+      "published": "2026-05-04",
+      "membersOnly": false,
+      "type": "short"
     },
     {
       "title": "妹と二人羽織で積分してみた",
@@ -58,6 +168,17 @@
       "type": "video"
     },
     {
+      "title": "理系大学院生のリアル１週間コーデ #理系 #理系大学生 #大学生 #大学生1週間コーデ",
+      "videoId": "clyF33lbDk4",
+      "url": "https://www.youtube.com/shorts/clyF33lbDk4",
+      "views": "23,036回",
+      "viewCount": 23036,
+      "thumbnail": "https://i.ytimg.com/vi/clyF33lbDk4/mqdefault.jpg",
+      "published": "2026-04-28",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
       "title": "他大学院進した理系大学院生の慣れない日常です👩‍🎓:( ;´꒳`;)",
       "videoId": "Ab8tRz4E8nI",
       "url": "https://www.youtube.com/watch?v=Ab8tRz4E8nI",
@@ -69,6 +190,17 @@
       "type": "video"
     },
     {
+      "title": "久々のゲリラ配信🎙〰️ちょっと疲れてきたね",
+      "videoId": "_qv0EAFvNhE",
+      "url": "https://www.youtube.com/watch?v=_qv0EAFvNhE",
+      "views": "5,052回",
+      "viewCount": 5052,
+      "thumbnail": "https://i.ytimg.com/vi/_qv0EAFvNhE/mqdefault.jpg",
+      "published": "2026-04-23",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
       "title": "新しい大学院のシステムに慣れないけど頑張っていきたいVLOG🌸🐱",
       "videoId": "IN4VCkHLxpw",
       "url": "https://www.youtube.com/watch?v=IN4VCkHLxpw",
@@ -78,6 +210,39 @@
       "published": "2026-04-22",
       "membersOnly": true,
       "type": "video"
+    },
+    {
+      "title": "大学院の学生証を貰いに行く日🌸📓",
+      "videoId": "PhRAGzVLud4",
+      "url": "https://www.youtube.com/shorts/PhRAGzVLud4",
+      "views": "",
+      "viewCount": 0,
+      "thumbnail": "https://i.ytimg.com/vi/PhRAGzVLud4/mqdefault.jpg",
+      "published": "2026-04-19",
+      "membersOnly": true,
+      "type": "short"
+    },
+    {
+      "title": "物理学修士1年生の大学院入学式 #理系 #vlog",
+      "videoId": "Rh2nBfx901w",
+      "url": "https://www.youtube.com/shorts/Rh2nBfx901w",
+      "views": "20,616回",
+      "viewCount": 20616,
+      "thumbnail": "https://i.ytimg.com/vi/Rh2nBfx901w/mqdefault.jpg",
+      "published": "2026-04-18",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
+      "title": "たまにバズってる筆記音動画やってみた #画質悪い",
+      "videoId": "Vwg8LbxW12E",
+      "url": "https://www.youtube.com/shorts/Vwg8LbxW12E",
+      "views": "4,825回",
+      "viewCount": 4825,
+      "thumbnail": "https://i.ytimg.com/vi/Vwg8LbxW12E/mqdefault.jpg",
+      "published": "2026-04-10",
+      "membersOnly": false,
+      "type": "short"
     },
     {
       "title": "【時効】進学校の落ちこぼれの調査書を見てみよう😭",
@@ -201,6 +366,17 @@
       "type": "video"
     },
     {
+      "title": "耐えられないので最低さんになります",
+      "videoId": "nS4cO5B0Nog",
+      "url": "https://www.youtube.com/watch?v=nS4cO5B0Nog",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/nS4cO5B0Nog/mqdefault.jpg",
+      "published": "2026-01-19",
+      "membersOnly": true,
+      "type": "live"
+    },
+    {
       "title": "今年の抱負を話すよ〜",
       "videoId": "czxcmZhpP60",
       "url": "https://www.youtube.com/watch?v=czxcmZhpP60",
@@ -245,6 +421,17 @@
       "type": "video"
     },
     {
+      "title": "メリクリ",
+      "videoId": "5igPwqfUTzA",
+      "url": "https://www.youtube.com/shorts/5igPwqfUTzA",
+      "views": "",
+      "viewCount": 0,
+      "thumbnail": "https://i.ytimg.com/vi/5igPwqfUTzA/mqdefault.jpg",
+      "published": "2025-12-24",
+      "membersOnly": true,
+      "type": "short"
+    },
+    {
       "title": "オタサーの姫状態じゃないと会話できないキモ女である可能性について",
       "videoId": "acokotEQGek",
       "url": "https://www.youtube.com/watch?v=acokotEQGek",
@@ -254,6 +441,17 @@
       "published": "2025-12-21",
       "membersOnly": true,
       "type": "video"
+    },
+    {
+      "title": "久しぶりの雑談配信！もう12月だよ、、、🧣🧤",
+      "videoId": "cQ-gWW_Cdf4",
+      "url": "https://www.youtube.com/watch?v=cQ-gWW_Cdf4",
+      "views": "5,518回",
+      "viewCount": 5518,
+      "thumbnail": "https://i.ytimg.com/vi/cQ-gWW_Cdf4/mqdefault.jpg",
+      "published": "2025-12-07",
+      "membersOnly": false,
+      "type": "live"
     },
     {
       "title": "ひとりじゃ生きていけないね",
@@ -322,6 +520,17 @@
       "type": "video"
     },
     {
+      "title": "Study with me /物理学科4年生",
+      "videoId": "VV8LfWLD3Sc",
+      "url": "https://www.youtube.com/watch?v=VV8LfWLD3Sc",
+      "views": "3,452回",
+      "viewCount": 3452,
+      "thumbnail": "https://i.ytimg.com/vi/VV8LfWLD3Sc/mqdefault.jpg",
+      "published": "2025-09-30",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
       "title": "ローレンツ祭に行ったよ〜",
       "videoId": "o2q_yeFwFzo",
       "url": "https://www.youtube.com/watch?v=o2q_yeFwFzo",
@@ -333,114 +542,37 @@
       "type": "video"
     },
     {
-      "title": "理系大学院生のバイトして研究室にいく土曜日VLOG #vlog #物理学科",
-      "videoId": "d6n2Vscd0AI",
-      "url": "https://www.youtube.com/shorts/d6n2Vscd0AI",
-      "views": "7,949回",
-      "viewCount": 7949,
-      "thumbnail": "https://i.ytimg.com/vi/d6n2Vscd0AI/mqdefault.jpg",
-      "published": "2026-06-11",
+      "title": "ゼミの資料作り終わるまで✊📝´-のつもりが1/3しか終わらなかった勉強配信/物理学科4年/#タイピング音 #作業動画",
+      "videoId": "yIJbSuLcbKU",
+      "url": "https://www.youtube.com/watch?v=yIJbSuLcbKU",
+      "views": "3,773回",
+      "viewCount": 3773,
+      "thumbnail": "https://i.ytimg.com/vi/yIJbSuLcbKU/mqdefault.jpg",
+      "published": "2025-06-22",
       "membersOnly": false,
-      "type": "short"
+      "type": "live"
     },
     {
-      "title": "理系大学院生の物理が出来ない日常 #理系 #vlog #物理学科 #理系大学生 #大学院生",
-      "videoId": "B4Bh9X4J4IQ",
-      "url": "https://www.youtube.com/shorts/B4Bh9X4J4IQ",
-      "views": "11,293回",
-      "viewCount": 11293,
-      "thumbnail": "https://i.ytimg.com/vi/B4Bh9X4J4IQ/mqdefault.jpg",
-      "published": "2026-06-08",
+      "title": "雑談配信/物理学科4年生/猫と遊ぶ",
+      "videoId": "EE3OGUOEDCE",
+      "url": "https://www.youtube.com/watch?v=EE3OGUOEDCE",
+      "views": "5,186回",
+      "viewCount": 5186,
+      "thumbnail": "https://i.ytimg.com/vi/EE3OGUOEDCE/mqdefault.jpg",
+      "published": "2025-06-07",
       "membersOnly": false,
-      "type": "short"
+      "type": "live"
     },
     {
-      "title": "ポンコツ物理学徒の1日 #理系 #vlog #物理学科",
-      "videoId": "a8E_iJFyicM",
-      "url": "https://www.youtube.com/shorts/a8E_iJFyicM",
-      "views": "12,339回",
-      "viewCount": 12339,
-      "thumbnail": "https://i.ytimg.com/vi/a8E_iJFyicM/mqdefault.jpg",
-      "published": "2026-05-15",
+      "title": "StudyWithMe✍🏻/勉強配信/物理学科",
+      "videoId": "pIpR-9hLZ7M",
+      "url": "https://www.youtube.com/watch?v=pIpR-9hLZ7M",
+      "views": "2,529回",
+      "viewCount": 2529,
+      "thumbnail": "https://i.ytimg.com/vi/pIpR-9hLZ7M/mqdefault.jpg",
+      "published": "2025-06-03",
       "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "ONICHA飲むだけ",
-      "videoId": "-nXQdH-OZLw",
-      "url": "https://www.youtube.com/shorts/-nXQdH-OZLw",
-      "views": "",
-      "viewCount": 0,
-      "thumbnail": "https://i.ytimg.com/vi/-nXQdH-OZLw/mqdefault.jpg",
-      "published": "2026-05-09",
-      "membersOnly": true,
-      "type": "short"
-    },
-    {
-      "title": "もう勉強に全振りするからいいです",
-      "videoId": "v4DFTobPj30",
-      "url": "https://www.youtube.com/shorts/v4DFTobPj30",
-      "views": "13,178回",
-      "viewCount": 13178,
-      "thumbnail": "https://i.ytimg.com/vi/v4DFTobPj30/mqdefault.jpg",
-      "published": "2026-05-04",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "理系大学院生のリアル１週間コーデ #理系 #理系大学生 #大学生 #大学生1週間コーデ",
-      "videoId": "clyF33lbDk4",
-      "url": "https://www.youtube.com/shorts/clyF33lbDk4",
-      "views": "23,036回",
-      "viewCount": 23036,
-      "thumbnail": "https://i.ytimg.com/vi/clyF33lbDk4/mqdefault.jpg",
-      "published": "2026-04-28",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "大学院の学生証を貰いに行く日🌸📓",
-      "videoId": "PhRAGzVLud4",
-      "url": "https://www.youtube.com/shorts/PhRAGzVLud4",
-      "views": "",
-      "viewCount": 0,
-      "thumbnail": "https://i.ytimg.com/vi/PhRAGzVLud4/mqdefault.jpg",
-      "published": "2026-04-19",
-      "membersOnly": true,
-      "type": "short"
-    },
-    {
-      "title": "物理学修士1年生の大学院入学式 #理系 #vlog",
-      "videoId": "Rh2nBfx901w",
-      "url": "https://www.youtube.com/shorts/Rh2nBfx901w",
-      "views": "20,616回",
-      "viewCount": 20616,
-      "thumbnail": "https://i.ytimg.com/vi/Rh2nBfx901w/mqdefault.jpg",
-      "published": "2026-04-18",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "たまにバズってる筆記音動画やってみた #画質悪い",
-      "videoId": "Vwg8LbxW12E",
-      "url": "https://www.youtube.com/shorts/Vwg8LbxW12E",
-      "views": "4,825回",
-      "viewCount": 4825,
-      "thumbnail": "https://i.ytimg.com/vi/Vwg8LbxW12E/mqdefault.jpg",
-      "published": "2026-04-10",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "メリクリ",
-      "videoId": "5igPwqfUTzA",
-      "url": "https://www.youtube.com/shorts/5igPwqfUTzA",
-      "views": "",
-      "viewCount": 0,
-      "thumbnail": "https://i.ytimg.com/vi/5igPwqfUTzA/mqdefault.jpg",
-      "published": "2025-12-24",
-      "membersOnly": true,
-      "type": "short"
+      "type": "live"
     },
     {
       "title": "YouTubeに呼ばれてGoogle本社に行ってきた！",
@@ -454,6 +586,39 @@
       "type": "short"
     },
     {
+      "title": "Study with me / 勉強配信",
+      "videoId": "o2ySWchE8ZY",
+      "url": "https://www.youtube.com/watch?v=o2ySWchE8ZY",
+      "views": "2,215回",
+      "viewCount": 2215,
+      "thumbnail": "https://i.ytimg.com/vi/o2ySWchE8ZY/mqdefault.jpg",
+      "published": "2025-06-01",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
+      "title": "勉強するだけ/物理学科4年",
+      "videoId": "1oAulnEN6vo",
+      "url": "https://www.youtube.com/watch?v=1oAulnEN6vo",
+      "views": "2,904回",
+      "viewCount": 2904,
+      "thumbnail": "https://i.ytimg.com/vi/1oAulnEN6vo/mqdefault.jpg",
+      "published": "2025-04-27",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
+      "title": "久しぶりの雑談配信🗣",
+      "videoId": "SXldUw9ou24",
+      "url": "https://www.youtube.com/watch?v=SXldUw9ou24",
+      "views": "5,152回",
+      "viewCount": 5152,
+      "thumbnail": "https://i.ytimg.com/vi/SXldUw9ou24/mqdefault.jpg",
+      "published": "2025-04-08",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
       "title": "成績Reveal実験 #物理学科 #理系大学生",
       "videoId": "rUKfQtNazIU",
       "url": "https://www.youtube.com/shorts/rUKfQtNazIU",
@@ -463,6 +628,17 @@
       "published": "2025-02-26",
       "membersOnly": false,
       "type": "short"
+    },
+    {
+      "title": "久しぶりにお話しましょ🐱/オフ会チケット販売開始したよん。",
+      "videoId": "U40m88UV3EY",
+      "url": "https://www.youtube.com/watch?v=U40m88UV3EY",
+      "views": "3,138回",
+      "viewCount": 3138,
+      "thumbnail": "https://i.ytimg.com/vi/U40m88UV3EY/mqdefault.jpg",
+      "published": "2025-02-23",
+      "membersOnly": false,
+      "type": "live"
     },
     {
       "title": "量子力学と告白の失敗 #chatgpt #物理学科 #量子力学 #理系 #理系大学生",
@@ -553,6 +729,17 @@
       "type": "short"
     },
     {
+      "title": "クリぼっち集まれ〜🎄👤",
+      "videoId": "9WmzrDm0ua8",
+      "url": "https://www.youtube.com/watch?v=9WmzrDm0ua8",
+      "views": "5,438回",
+      "viewCount": 5438,
+      "thumbnail": "https://i.ytimg.com/vi/9WmzrDm0ua8/mqdefault.jpg",
+      "published": "2024-12-24",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
       "title": "ぼっち理系大学生の日常 #大学生の日常 #物理学科 #理系大学生 #理系女子 #理系 #物理",
       "videoId": "jt22k1jneUQ",
       "url": "https://www.youtube.com/shorts/jt22k1jneUQ",
@@ -573,281 +760,6 @@
       "published": "2024-11-05",
       "membersOnly": false,
       "type": "short"
-    },
-    {
-      "title": "お風呂キャンセル界隈に物申してしまう理系陰キャ大学生 #物理学科 #理系 #理系大学生 #お風呂キャンセル界隈",
-      "videoId": "Umu-CHM4q4o",
-      "url": "https://www.youtube.com/shorts/Umu-CHM4q4o",
-      "views": "8,112回",
-      "viewCount": 8112,
-      "thumbnail": "https://i.ytimg.com/vi/Umu-CHM4q4o/mqdefault.jpg",
-      "published": "2024-10-15",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "後期も頑張りたい理系大学生の1日 / #物理学科 #vlog #理系 #理系大学生 #study #理学系",
-      "videoId": "mIsd8x4BeLU",
-      "url": "https://www.youtube.com/shorts/mIsd8x4BeLU",
-      "views": "42,156回",
-      "viewCount": 42156,
-      "thumbnail": "https://i.ytimg.com/vi/mIsd8x4BeLU/mqdefault.jpg",
-      "published": "2024-10-03",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "晩夏も勉強とバイトに追われる理系大学生 #物理学科 #理系大学生 #理系 #理系女子 #vlog",
-      "videoId": "nyE5p5TOyr0",
-      "url": "https://www.youtube.com/shorts/nyE5p5TOyr0",
-      "views": "10,097回",
-      "viewCount": 10097,
-      "thumbnail": "https://i.ytimg.com/vi/nyE5p5TOyr0/mqdefault.jpg",
-      "published": "2024-09-29",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "理系大学生の1週間コーデ（ガチ） #物理学科 #vlog #理系大学生 #理系",
-      "videoId": "VjchT7vZsBM",
-      "url": "https://www.youtube.com/shorts/VjchT7vZsBM",
-      "views": "107,560回",
-      "viewCount": 107560,
-      "thumbnail": "https://i.ytimg.com/vi/VjchT7vZsBM/mqdefault.jpg",
-      "published": "2024-09-17",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "限界理系大学生の夏休み #物理学科 #理系大学生 #理系 #vlog",
-      "videoId": "6ZyXugbGoW4",
-      "url": "https://www.youtube.com/shorts/6ZyXugbGoW4",
-      "views": "14,827回",
-      "viewCount": 14827,
-      "thumbnail": "https://i.ytimg.com/vi/6ZyXugbGoW4/mqdefault.jpg",
-      "published": "2024-09-09",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "深夜アルコール摂取のすゝめ",
-      "videoId": "MOuwGgKcvNU",
-      "url": "https://www.youtube.com/shorts/MOuwGgKcvNU",
-      "views": "7,769回",
-      "viewCount": 7769,
-      "thumbnail": "https://i.ytimg.com/vi/MOuwGgKcvNU/mqdefault.jpg",
-      "published": "2024-08-15",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "大学に引きこもる理系大学生の1日 #物理学科 #理系女子 #理系大学生 #vlog",
-      "videoId": "ohHIPUEEFOc",
-      "url": "https://www.youtube.com/shorts/ohHIPUEEFOc",
-      "views": "7,692回",
-      "viewCount": 7692,
-      "thumbnail": "https://i.ytimg.com/vi/ohHIPUEEFOc/mqdefault.jpg",
-      "published": "2024-08-13",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "期末試験オワタ。理系大学生の1日。/w#物理学科 #理系女子 #理系大学生",
-      "videoId": "ipW607Fk5dw",
-      "url": "https://www.youtube.com/shorts/ipW607Fk5dw",
-      "views": "12,055回",
-      "viewCount": 12055,
-      "thumbnail": "https://i.ytimg.com/vi/ipW607Fk5dw/mqdefault.jpg",
-      "published": "2024-08-12",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
-      "title": "今日こそお話しよう🍻",
-      "videoId": "6UmUbkiDo3k",
-      "url": "https://www.youtube.com/watch?v=6UmUbkiDo3k",
-      "views": "3,776回",
-      "viewCount": 3776,
-      "thumbnail": "https://i.ytimg.com/vi/6UmUbkiDo3k/mqdefault.jpg",
-      "published": "2026-06-13",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "5月もお疲れ様配信！🌕✨️",
-      "videoId": "M6bErltFEq8",
-      "url": "https://www.youtube.com/watch?v=M6bErltFEq8",
-      "views": "4,243回",
-      "viewCount": 4243,
-      "thumbnail": "https://i.ytimg.com/vi/M6bErltFEq8/mqdefault.jpg",
-      "published": "2026-06-01",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "Study with me/ 理系大学院生と一緒に勉強するとかどうー？/作業用配信",
-      "videoId": "2u5SU2qSliE",
-      "url": "https://www.youtube.com/watch?v=2u5SU2qSliE",
-      "views": "3,781回",
-      "viewCount": 3781,
-      "thumbnail": "https://i.ytimg.com/vi/2u5SU2qSliE/mqdefault.jpg",
-      "published": "2026-05-28",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "スマホいじり防止の勉強ラジオ配信",
-      "videoId": "WeL8rwmiYe8",
-      "url": "https://www.youtube.com/watch?v=WeL8rwmiYe8",
-      "views": "",
-      "viewCount": null,
-      "thumbnail": "https://i.ytimg.com/vi/WeL8rwmiYe8/mqdefault.jpg",
-      "published": "2026-05-09",
-      "membersOnly": true,
-      "type": "live"
-    },
-    {
-      "title": "五月も頑張っていきたい華金配信だ～～！物理学徒のゲリラ配信！",
-      "videoId": "fJjluMgORk4",
-      "url": "https://www.youtube.com/watch?v=fJjluMgORk4",
-      "views": "4,582回",
-      "viewCount": 4582,
-      "thumbnail": "https://i.ytimg.com/vi/fJjluMgORk4/mqdefault.jpg",
-      "published": "2026-05-08",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "久々のゲリラ配信🎙〰️ちょっと疲れてきたね",
-      "videoId": "_qv0EAFvNhE",
-      "url": "https://www.youtube.com/watch?v=_qv0EAFvNhE",
-      "views": "5,052回",
-      "viewCount": 5052,
-      "thumbnail": "https://i.ytimg.com/vi/_qv0EAFvNhE/mqdefault.jpg",
-      "published": "2026-04-23",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "耐えられないので最低さんになります",
-      "videoId": "nS4cO5B0Nog",
-      "url": "https://www.youtube.com/watch?v=nS4cO5B0Nog",
-      "views": "",
-      "viewCount": null,
-      "thumbnail": "https://i.ytimg.com/vi/nS4cO5B0Nog/mqdefault.jpg",
-      "published": "2026-01-19",
-      "membersOnly": true,
-      "type": "live"
-    },
-    {
-      "title": "久しぶりの雑談配信！もう12月だよ、、、🧣🧤",
-      "videoId": "cQ-gWW_Cdf4",
-      "url": "https://www.youtube.com/watch?v=cQ-gWW_Cdf4",
-      "views": "5,518回",
-      "viewCount": 5518,
-      "thumbnail": "https://i.ytimg.com/vi/cQ-gWW_Cdf4/mqdefault.jpg",
-      "published": "2025-12-07",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "Study with me /物理学科4年生",
-      "videoId": "VV8LfWLD3Sc",
-      "url": "https://www.youtube.com/watch?v=VV8LfWLD3Sc",
-      "views": "3,452回",
-      "viewCount": 3452,
-      "thumbnail": "https://i.ytimg.com/vi/VV8LfWLD3Sc/mqdefault.jpg",
-      "published": "2025-09-30",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "ゼミの資料作り終わるまで✊📝´-のつもりが1/3しか終わらなかった勉強配信/物理学科4年/#タイピング音 #作業動画",
-      "videoId": "yIJbSuLcbKU",
-      "url": "https://www.youtube.com/watch?v=yIJbSuLcbKU",
-      "views": "3,773回",
-      "viewCount": 3773,
-      "thumbnail": "https://i.ytimg.com/vi/yIJbSuLcbKU/mqdefault.jpg",
-      "published": "2025-06-22",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "雑談配信/物理学科4年生/猫と遊ぶ",
-      "videoId": "EE3OGUOEDCE",
-      "url": "https://www.youtube.com/watch?v=EE3OGUOEDCE",
-      "views": "5,186回",
-      "viewCount": 5186,
-      "thumbnail": "https://i.ytimg.com/vi/EE3OGUOEDCE/mqdefault.jpg",
-      "published": "2025-06-07",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "StudyWithMe✍🏻/勉強配信/物理学科",
-      "videoId": "pIpR-9hLZ7M",
-      "url": "https://www.youtube.com/watch?v=pIpR-9hLZ7M",
-      "views": "2,529回",
-      "viewCount": 2529,
-      "thumbnail": "https://i.ytimg.com/vi/pIpR-9hLZ7M/mqdefault.jpg",
-      "published": "2025-06-03",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "Study with me / 勉強配信",
-      "videoId": "o2ySWchE8ZY",
-      "url": "https://www.youtube.com/watch?v=o2ySWchE8ZY",
-      "views": "2,215回",
-      "viewCount": 2215,
-      "thumbnail": "https://i.ytimg.com/vi/o2ySWchE8ZY/mqdefault.jpg",
-      "published": "2025-06-01",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "勉強するだけ/物理学科4年",
-      "videoId": "1oAulnEN6vo",
-      "url": "https://www.youtube.com/watch?v=1oAulnEN6vo",
-      "views": "2,904回",
-      "viewCount": 2904,
-      "thumbnail": "https://i.ytimg.com/vi/1oAulnEN6vo/mqdefault.jpg",
-      "published": "2025-04-27",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "久しぶりの雑談配信🗣",
-      "videoId": "SXldUw9ou24",
-      "url": "https://www.youtube.com/watch?v=SXldUw9ou24",
-      "views": "5,152回",
-      "viewCount": 5152,
-      "thumbnail": "https://i.ytimg.com/vi/SXldUw9ou24/mqdefault.jpg",
-      "published": "2025-04-08",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "久しぶりにお話しましょ🐱/オフ会チケット販売開始したよん。",
-      "videoId": "U40m88UV3EY",
-      "url": "https://www.youtube.com/watch?v=U40m88UV3EY",
-      "views": "3,138回",
-      "viewCount": 3138,
-      "thumbnail": "https://i.ytimg.com/vi/U40m88UV3EY/mqdefault.jpg",
-      "published": "2025-02-23",
-      "membersOnly": false,
-      "type": "live"
-    },
-    {
-      "title": "クリぼっち集まれ〜🎄👤",
-      "videoId": "9WmzrDm0ua8",
-      "url": "https://www.youtube.com/watch?v=9WmzrDm0ua8",
-      "views": "5,438回",
-      "viewCount": 5438,
-      "thumbnail": "https://i.ytimg.com/vi/9WmzrDm0ua8/mqdefault.jpg",
-      "published": "2024-12-24",
-      "membersOnly": false,
-      "type": "live"
     },
     {
       "title": "ハロウィンぼっちの人集まれ〜🎃🌙",
@@ -894,6 +806,17 @@
       "type": "live"
     },
     {
+      "title": "お風呂キャンセル界隈に物申してしまう理系陰キャ大学生 #物理学科 #理系 #理系大学生 #お風呂キャンセル界隈",
+      "videoId": "Umu-CHM4q4o",
+      "url": "https://www.youtube.com/shorts/Umu-CHM4q4o",
+      "views": "8,112回",
+      "viewCount": 8112,
+      "thumbnail": "https://i.ytimg.com/vi/Umu-CHM4q4o/mqdefault.jpg",
+      "published": "2024-10-15",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
       "title": "私も復活したい‼️",
       "videoId": "S7a6VaGVANk",
       "url": "https://www.youtube.com/watch?v=S7a6VaGVANk",
@@ -903,6 +826,28 @@
       "published": "2024-10-13",
       "membersOnly": false,
       "type": "live"
+    },
+    {
+      "title": "後期も頑張りたい理系大学生の1日 / #物理学科 #vlog #理系 #理系大学生 #study #理学系",
+      "videoId": "mIsd8x4BeLU",
+      "url": "https://www.youtube.com/shorts/mIsd8x4BeLU",
+      "views": "42,156回",
+      "viewCount": 42156,
+      "thumbnail": "https://i.ytimg.com/vi/mIsd8x4BeLU/mqdefault.jpg",
+      "published": "2024-10-03",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
+      "title": "晩夏も勉強とバイトに追われる理系大学生 #物理学科 #理系大学生 #理系 #理系女子 #vlog",
+      "videoId": "nyE5p5TOyr0",
+      "url": "https://www.youtube.com/shorts/nyE5p5TOyr0",
+      "views": "10,097回",
+      "viewCount": 10097,
+      "thumbnail": "https://i.ytimg.com/vi/nyE5p5TOyr0/mqdefault.jpg",
+      "published": "2024-09-29",
+      "membersOnly": false,
+      "type": "short"
     },
     {
       "title": "お疲れ様です🍻の続き。。",
@@ -938,6 +883,17 @@
       "type": "live"
     },
     {
+      "title": "理系大学生の1週間コーデ（ガチ） #物理学科 #vlog #理系大学生 #理系",
+      "videoId": "VjchT7vZsBM",
+      "url": "https://www.youtube.com/shorts/VjchT7vZsBM",
+      "views": "107,560回",
+      "viewCount": 107560,
+      "thumbnail": "https://i.ytimg.com/vi/VjchT7vZsBM/mqdefault.jpg",
+      "published": "2024-09-17",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
       "title": "オフ会楽しかった！",
       "videoId": "eyyQcbF-aSE",
       "url": "https://www.youtube.com/watch?v=eyyQcbF-aSE",
@@ -960,6 +916,17 @@
       "type": "live"
     },
     {
+      "title": "限界理系大学生の夏休み #物理学科 #理系大学生 #理系 #vlog",
+      "videoId": "6ZyXugbGoW4",
+      "url": "https://www.youtube.com/shorts/6ZyXugbGoW4",
+      "views": "14,827回",
+      "viewCount": 14827,
+      "thumbnail": "https://i.ytimg.com/vi/6ZyXugbGoW4/mqdefault.jpg",
+      "published": "2024-09-09",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
       "title": "バタバタの近況を話すよ〜",
       "videoId": "XsM1oxJSGR8",
       "url": "https://www.youtube.com/watch?v=XsM1oxJSGR8",
@@ -980,6 +947,39 @@
       "published": "2024-08-16",
       "membersOnly": false,
       "type": "live"
+    },
+    {
+      "title": "深夜アルコール摂取のすゝめ",
+      "videoId": "MOuwGgKcvNU",
+      "url": "https://www.youtube.com/shorts/MOuwGgKcvNU",
+      "views": "7,769回",
+      "viewCount": 7769,
+      "thumbnail": "https://i.ytimg.com/vi/MOuwGgKcvNU/mqdefault.jpg",
+      "published": "2024-08-15",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
+      "title": "大学に引きこもる理系大学生の1日 #物理学科 #理系女子 #理系大学生 #vlog",
+      "videoId": "ohHIPUEEFOc",
+      "url": "https://www.youtube.com/shorts/ohHIPUEEFOc",
+      "views": "7,692回",
+      "viewCount": 7692,
+      "thumbnail": "https://i.ytimg.com/vi/ohHIPUEEFOc/mqdefault.jpg",
+      "published": "2024-08-13",
+      "membersOnly": false,
+      "type": "short"
+    },
+    {
+      "title": "期末試験オワタ。理系大学生の1日。/w#物理学科 #理系女子 #理系大学生",
+      "videoId": "ipW607Fk5dw",
+      "url": "https://www.youtube.com/shorts/ipW607Fk5dw",
+      "views": "12,055回",
+      "viewCount": 12055,
+      "thumbnail": "https://i.ytimg.com/vi/ipW607Fk5dw/mqdefault.jpg",
+      "published": "2024-08-12",
+      "membersOnly": false,
+      "type": "short"
     }
   ]
 }

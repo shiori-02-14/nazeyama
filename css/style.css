@@ -565,6 +565,10 @@ img { max-width: 100%; display: block; }
   padding: 1px 6px;
   line-height: 1.5;
 }
+.vcard__badge--live {
+  color: #ff8a80;
+  border-color: rgba(255, 138, 128, 0.5);
+}
 
 /* ---------- neko ---------- */
 .neko__wrap {
@@ -1025,26 +1029,33 @@ img { max-width: 100%; display: block; }
     overflow: visible;
   }
   .hero__path {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
     gap: 4px;
     width: 100%;
     margin-bottom: 10px;
   }
   .hero__path-step {
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
     min-width: 0;
   }
-  .hero__path-sep { display: none; }
+  .hero__path-sep {
+    color: rgba(244, 241, 232, 0.55);
+    font-size: 0.65em;
+    padding: 0 1px;
+    flex-shrink: 0;
+  }
   .hero__path-item {
-    white-space: normal;
+    white-space: nowrap;
     text-align: center;
     font-size: clamp(0.58rem, 2.35vw, 0.72rem);
-    padding: 3px 4px;
-    width: 100%;
+    padding: 3px 8px;
+    width: auto;
     box-sizing: border-box;
-    overflow-wrap: anywhere;
   }
   .hero__title {
     font-size: clamp(1.65rem, 7.5vw, 2.2rem);

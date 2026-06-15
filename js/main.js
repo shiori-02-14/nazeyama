@@ -586,6 +586,9 @@ function getVideoList() {
       if (diff !== 0) return diff;
       return String(b.published || "").localeCompare(String(a.published || ""));
     });
+  } else if (currentFilter === "all") {
+    // 動画→ショート→ライブの塊順だと配信が末尾に固まるため、新着順に混ぜる
+    list.sort((a, b) => String(b.published || "").localeCompare(String(a.published || "")));
   }
   return list;
 }
@@ -714,10 +717,13 @@ function buildMarquee(track, videos) {
     const views = v.views
       ? '<span class="vcard__views">' + esc(v.views) + "</span>"
       : (v.viewCount ? '<span class="vcard__views">' + esc(v.viewCount.toLocaleString("ja-JP") + "回") + "</span>" : "");
+    const live = resolveVideoType(v) === "live"
+      ? '<span class="vcard__badge vcard__badge--live">ライブ</span>'
+      : "";
     const member = v.membersOnly
       ? '<span class="vcard__badge">メンバー限定</span>'
       : "";
-    const meta = date || views || member ? '<div class="vcard__meta">' + member + date + views + "</div>" : "";
+    const meta = date || views || member || live ? '<div class="vcard__meta">' + live + member + date + views + "</div>" : "";
     return (
       '<a class="vcard" href="' + esc(url) + '" target="_blank" rel="noopener">' +
       '<div class="vcard__thumb">' + thumb + '<span class="play">▶</span></div>' +

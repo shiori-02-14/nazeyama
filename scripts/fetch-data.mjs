@@ -105,7 +105,11 @@ function mergeVideoLists(prevVideos, newVideos) {
   if (!next.length) return prev;
   const map = new Map(prev.map((v) => [v.videoId, v]));
   for (const v of next) {
-    map.set(v.videoId, { ...map.get(v.videoId), ...v, videoId: v.videoId });
+    const prevEntry = map.get(v.videoId) || {};
+    const merged = { ...prevEntry, ...v, videoId: v.videoId };
+    if (prevEntry.type === "live" || v.type === "live") merged.type = "live";
+    if (prevEntry.type === "short" || v.type === "short") merged.type = "short";
+    map.set(v.videoId, merged);
   }
   const seen = new Set();
   const merged = [];
@@ -377,6 +381,11 @@ async function fetchVideos() {
     console.warn(`channel fetch weak (${channelFetched}); merging with previous ${prevCount} items`);
     videos = mergeVideoLists(prev.videos, videos);
   }
+
+  for (const v of videos) {
+    if (liveIds.has(v.videoId)) v.type = "live";
+  }
+  videos.sort((a, b) => String(b.published || "").localeCompare(String(a.published || "")));
 
   return videos;
 }
