@@ -760,8 +760,82 @@ function buildMarquee(track, videos) {
   const html = videos.map(cardHtml).join("");
   // 途切れないループのため2セット並べる（reduced-motion時は1セット＝手動スクロールのみ）
   track.innerHTML = REDUCED ? html : html + html;
+  setupMarqueeAfterRender(track);
+}
+
+const marqueeState = { mode: "auto", idleTimer: 0 };
+
+function syncMarqueeDuration(track) {
+  const half = track.scrollWidth / 2;
+  if (half <= 0) return 0;
+  const sec = Math.max(24, half / MARQUEE_PX_PER_SEC);
+  track.style.setProperty("--marquee-duration", sec + "s");
+  return sec;
+}
+
+function getTransformOffset(track) {
+  const m = new DOMMatrix(getComputedStyle(track).transform);
+  return Math.max(0, -m.m41);
+}
+
+function wrapMarqueeScroll(marquee) {
+  const track = $("#videos-track");
+  if (!track) return;
+  const half = track.scrollWidth / 2;
+  if (half <= 0) return;
+  if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
+  if (marquee.scrollLeft < 0) marquee.scrollLeft += half;
+}
+
+function scheduleMarqueeAuto(marquee, track) {
+  clearTimeout(marqueeState.idleTimer);
+  marqueeState.idleTimer = setTimeout(() => enterMarqueeAuto(marquee, track), 1000);
+}
+
+function enterMarqueeManual(marquee, track) {
+  if (marqueeState.mode !== "manual") {
+    marqueeState.mode = "manual";
+    track.style.animationPlayState = "paused";
+    const offset = getTransformOffset(track);
+    track.style.animation = "none";
+    track.style.transform = "none";
+    track.style.removeProperty("animation-delay");
+    marquee.classList.add("marquee--manual");
+    marquee.scrollLeft = offset;
+  }
+  scheduleMarqueeAuto(marquee, track);
+}
+
+function enterMarqueeAuto(marquee, track) {
+  if (REDUCED) return;
+  clearTimeout(marqueeState.idleTimer);
+  marqueeState.mode = "auto";
+  const half = track.scrollWidth / 2;
+  if (half <= 0) return;
+  let offset = marquee.scrollLeft;
+  offset = ((offset % half) + half) % half;
+  const duration = syncMarqueeDuration(track);
+  const delay = -(offset / half) * duration;
+  marquee.classList.remove("marquee--manual");
+  marquee.scrollLeft = 0;
+  track.style.animation = "none";
+  void track.offsetWidth;
+  track.style.removeProperty("animation");
+  track.style.animationDelay = delay + "s";
+}
+
+function setupMarqueeAfterRender(track) {
   const marquee = $("#videos-marquee");
-  if (marquee) marquee.scrollLeft = 0;
+  if (!marquee || !track) return;
+  track.style.transform = "";
+  track.style.removeProperty("animation-delay");
+  if (REDUCED) {
+    marqueeState.mode = "manual";
+    marquee.classList.add("marquee--manual");
+    track.style.animation = "none";
+    return;
+  }
+  requestAnimationFrame(() => enterMarqueeAuto(marquee, track));
 }
 
 function initMarqueeScroll() {
@@ -769,64 +843,39 @@ function initMarqueeScroll() {
   if (!marquee || marquee.dataset.scrollBound) return;
   marquee.dataset.scrollBound = "1";
 
-  const isTouchLike = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-  let paused = REDUCED || isTouchLike;
-  let resumeTimer = 0;
-  let lastTime = 0;
   let dragPointerId = null;
   let dragStartX = 0;
   let dragStartScroll = 0;
   let dragging = false;
   let suppressClick = false;
   let touchId = null;
+  let touchStartX = 0;
+  let touchStartScroll = 0;
   let touchMoved = false;
 
-  const getHalf = () => {
-    const track = $("#videos-track");
-    return track ? track.scrollWidth / 2 : 0;
-  };
+  const trackEl = () => $("#videos-track");
 
-  const wrapScroll = () => {
-    const half = getHalf();
-    if (half <= 0) return;
-    if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
+  const toManual = () => {
+    const track = trackEl();
+    if (!track) return;
+    enterMarqueeManual(marquee, track);
   };
-
-  const pause = (autoResumeMs = 4000) => {
-    paused = true;
-    marquee.classList.add("marquee--paused");
-    clearTimeout(resumeTimer);
-    if (autoResumeMs >= 0) {
-      resumeTimer = setTimeout(() => {
-        if (!isTouchLike) {
-          paused = false;
-          marquee.classList.remove("marquee--paused");
-        }
-      }, autoResumeMs);
-    }
-  };
-
-  const tick = (now) => {
-    if (!REDUCED && !isTouchLike && !paused) {
-      const dt = lastTime ? (now - lastTime) / 1000 : 0;
-      if (dt > 0) {
-        marquee.scrollLeft += MARQUEE_PX_PER_SEC * dt;
-        wrapScroll();
-      }
-    }
-    lastTime = now;
-    requestAnimationFrame(tick);
-  };
-
-  marquee.addEventListener("scroll", wrapScroll, { passive: true });
 
   marquee.addEventListener("wheel", (e) => {
-    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-    e.preventDefault();
-    marquee.scrollLeft += e.deltaY;
-    wrapScroll();
-    pause();
+    toManual();
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      marquee.scrollLeft += e.deltaY;
+      wrapMarqueeScroll(marquee);
+    }
+    scheduleMarqueeAuto(marquee, trackEl());
   }, { passive: false });
+
+  marquee.addEventListener("scroll", () => {
+    if (marqueeState.mode !== "manual") return;
+    wrapMarqueeScroll(marquee);
+    scheduleMarqueeAuto(marquee, trackEl());
+  }, { passive: true });
 
   marquee.addEventListener("pointerdown", (e) => {
     if (e.button !== 0 || e.pointerType === "touch") return;
@@ -834,7 +883,6 @@ function initMarqueeScroll() {
     dragStartX = e.clientX;
     dragStartScroll = marquee.scrollLeft;
     dragging = false;
-    pause(-1);
   });
 
   marquee.addEventListener("pointermove", (e) => {
@@ -843,22 +891,24 @@ function initMarqueeScroll() {
     if (!dragging && Math.abs(dx) > 6) {
       dragging = true;
       suppressClick = true;
+      toManual();
+      dragStartScroll = marquee.scrollLeft;
+      dragStartX = e.clientX;
       marquee.setPointerCapture(e.pointerId);
     }
     if (!dragging) return;
     e.preventDefault();
-    marquee.scrollLeft = dragStartScroll - dx;
-    wrapScroll();
+    marquee.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
+    wrapMarqueeScroll(marquee);
+    scheduleMarqueeAuto(marquee, trackEl());
   });
 
   const endDrag = (e) => {
     if (dragPointerId !== null && e && e.pointerId === dragPointerId && dragging) {
       try { marquee.releasePointerCapture(e.pointerId); } catch { /* noop */ }
     }
-    const wasDragging = dragging;
     dragPointerId = null;
     dragging = false;
-    if (wasDragging) pause(4000);
   };
 
   marquee.addEventListener("pointerup", endDrag);
@@ -872,12 +922,11 @@ function initMarqueeScroll() {
     }
   }, true);
 
-  // スマホ: リンク上でも横スワイプできるよう touch で直接 scrollLeft を動かす
   marquee.addEventListener("touchstart", (e) => {
     if (e.touches.length !== 1) return;
     touchId = e.touches[0].identifier;
     touchStartX = e.touches[0].clientX;
-    touchStartScroll = marquee.scrollLeft;
+    touchStartScroll = 0;
     touchMoved = false;
   }, { passive: true });
 
@@ -885,11 +934,18 @@ function initMarqueeScroll() {
     const t = Array.from(e.touches).find((touch) => touch.identifier === touchId);
     if (!t) return;
     const dx = t.clientX - touchStartX;
-    if (!touchMoved && Math.abs(dx) > 8) touchMoved = true;
+    if (!touchMoved && Math.abs(dx) > 8) {
+      touchMoved = true;
+      toManual();
+      touchStartScroll = marquee.scrollLeft;
+      touchStartX = t.clientX;
+    }
     if (!touchMoved) return;
-    marquee.scrollLeft = touchStartScroll - dx;
-    wrapScroll();
-  }, { passive: true });
+    e.preventDefault();
+    marquee.scrollLeft = touchStartScroll - (t.clientX - touchStartX);
+    wrapMarqueeScroll(marquee);
+    scheduleMarqueeAuto(marquee, trackEl());
+  }, { passive: false });
 
   const endTouch = () => {
     if (touchMoved) suppressClick = true;
@@ -899,17 +955,4 @@ function initMarqueeScroll() {
 
   marquee.addEventListener("touchend", endTouch, { passive: true });
   marquee.addEventListener("touchcancel", endTouch, { passive: true });
-
-  if (!isTouchLike) {
-    marquee.addEventListener("mouseenter", () => pause(-1));
-    marquee.addEventListener("mouseleave", () => {
-      clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(() => {
-        paused = false;
-        marquee.classList.remove("marquee--paused");
-      }, 4000);
-    });
-  }
-
-  if (!REDUCED && !isTouchLike) requestAnimationFrame(tick);
 }
