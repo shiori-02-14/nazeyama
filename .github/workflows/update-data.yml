@@ -1,0 +1,40 @@
+name: Update data (videos & subscribers)
+
+# 数時間ごとに最新動画・登録者数を取得して data/*.json を更新します。
+# 手動実行は Actions タブの "Run workflow" から。
+on:
+  schedule:
+    - cron: "0 */6 * * *" # 6時間ごと（UTC）
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch latest data
+        run: node scripts/fetch-data.mjs
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "chore: update videos & stats [skip ci]"
+            git push
+          fi

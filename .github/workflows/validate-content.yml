@@ -1,0 +1,36 @@
+name: Validate content YAML
+
+# content/*.yaml の構文チェック。壊れたYAMLがpushされても気づけるようにします。
+on:
+  push:
+    paths: ["content/**.yaml"]
+  pull_request:
+    paths: ["content/**.yaml"]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install js-yaml
+        run: npm init -y >/dev/null 2>&1 && npm i js-yaml >/dev/null 2>&1
+
+      - name: Lint YAML
+        run: |
+          node -e '
+            const fs = require("fs");
+            const yaml = require("js-yaml");
+            const dir = "content";
+            let ok = true;
+            for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".yaml"))) {
+              try { yaml.load(fs.readFileSync(dir + "/" + f, "utf8")); console.log("OK  ", f); }
+              catch (e) { console.error("NG  ", f, "->", e.message); ok = false; }
+            }
+            if (!ok) process.exit(1);
+          '

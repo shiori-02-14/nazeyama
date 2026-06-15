@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nazeyama｜ほんのり物理が香る、にゃんこの日常</title>
+  <meta name="description" content="物理系YouTuber nazeyama の公式サイト。物理・勉強・大学院生活を発信。Because it's there." />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="nazeyama｜Because it's there." />
+  <meta property="og:description" content="ほんのり物理が香る、にゃんこの日常。物理系YouTuber nazeyama の公式サイト。" />
+  <meta property="og:image" content="assets/images/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- favicon (絵文字。後で assets/images に差し替え可) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛰️</text></svg>" />
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" />
+  <link rel="dns-prefetch" href="https://i.ytimg.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Yomogi&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- YAML パーサ（CDN）→ メインスクリプト。defer で記述順に実行 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+
+<body data-page="home">
+  <!-- ===== nav ===== -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="index.html"><span>n</span>azeyama</a>
+      <button class="nav__toggle" aria-label="メニュー" aria-expanded="false" aria-controls="nav-menu">☰</button>
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__links">
+          <li><a href="#videos">Videos</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+        <span class="nav__sep" aria-hidden="true"></span>
+        <a class="nav__cta" id="nav-cta" href="https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A" target="_blank" rel="noopener"><span class="nav__cta-icon" aria-hidden="true">▶</span>登録</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===== hero ===== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero__frame">
+          <div class="hero__board">
+            <div class="hero__grid">
+              <div class="hero__copy">
+                <p class="hero__name" id="hero-name">nazeyama</p>
+                <h1 class="hero__title" id="hero-title">Because it's there.</h1>
+                <p class="hero__sub" id="hero-sub">ほんのり物理が香る、にゃんこの日常</p>
+                <div class="hero__stats">
+                  <div class="stat"><div class="stat__num" id="stat-subs">35,293</div><div class="stat__label">登録者</div></div>
+                  <div class="stat"><div class="stat__num" id="stat-views">7,751,078</div><div class="stat__label">総再生</div></div>
+                </div>
+                <a class="hero__cta" id="hero-cta" href="https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A" target="_blank" rel="noopener">▶ チャンネル登録</a>
+              </div>
+              <div class="hero__art">
+                <img class="hero__icon" src="assets/images/yama.jpg" alt="nazeyama のアイコン" width="358" height="358" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== videos ===== -->
+    <section class="section" id="videos" data-section="videos">
+      <div class="container reveal">
+        <h2 class="section__title"><span class="sym">▶</span><span class="underline-chalk">Videos</span></h2>
+        <p class="section__lead">最新の動画を自動で取得して流しています（クリックでYouTubeへ）。</p>
+        <div class="tabs vfilter">
+          <button class="tab tab--active" data-vfilter="all">すべて</button>
+          <button class="tab" data-vfilter="video">動画</button>
+          <button class="tab" data-vfilter="short">ショート</button>
+          <button class="tab" data-vfilter="live">ライブ</button>
+          <button class="tab" data-vsort="member">メンバー限定</button>
+          <button class="tab" data-vsort="views">再生数順</button>
+        </div>
+      </div>
+      <div class="marquee reveal" id="videos-marquee">
+        <div class="marquee__track" id="videos-track">
+          <div class="vcard"><div class="vcard__thumb"><span class="chalk-mini">読み込み中…</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== neko ===== -->
+    <section class="section" id="neko" data-section="neko">
+      <div class="container reveal">
+        <h2 class="section__title"><span class="sym">🐾</span><span class="underline-chalk">物理屋のネッコ</span></h2>
+        <div class="neko__wrap">
+          <div class="neko__art">
+            <img class="neko__img" src="assets/images/neko.png" alt="物理屋のネッコ（nazeyama公式LINEスタンプのキャラクター）" width="240" height="240" loading="lazy" />
+          </div>
+          <div class="neko__text">
+            <h3 id="neko-name">物理屋のネッコ / nazeyama</h3>
+            <p id="neko-desc">猫好き理系大学生YouTuber nazeyama の、ほんのり物理が香る、にゃんこの日常スタンプ。</p>
+            <a class="stamp-btn" id="neko-stamp" href="https://line.me/S/sticker/27507573/" target="_blank" rel="noopener">LINEスタンプを見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== membership & fanletter ===== -->
+    <section class="section">
+      <div class="container reveal">
+        <div class="split">
+          <div class="card card--member" id="membership" data-section="membership">
+            <h2 class="section__title section__title--sm"><span class="sym">★</span><span class="underline-chalk">メンバーシップ</span></h2>
+            <p class="price" id="member-price">月額80円</p>
+            <p class="member__note" id="member-note">ゆるく応援してくれると嬉しいです。</p>
+            <a class="btn-outline btn-outline--yt" id="member-link" href="https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A/join" target="_blank" rel="noopener">メンバーになる</a>
+          </div>
+          <div class="card" id="fanletter" data-section="fanletter">
+            <h2 class="section__title"><span class="sym">✉</span><span class="underline-chalk">おたより・プレゼント</span></h2>
+            <p>お手紙やプレゼントの送り先です。</p>
+            <p class="letter__addr" id="letter-addr">〒573-0073 大阪府枚方市高田2丁目26-10-6 プレゼントハウス519「nazeyama」</p>
+            <ul class="letter__notes" id="letter-notes">
+              <li>amazon等のECサイトから届く場合は、住所の下に「置き配禁止」の記載をお願いします。</li>
+              <li>冷凍・冷蔵のものは受取不可です（常温保管のため）。</li>
+              <li>大きすぎるもの（200サイズ以上）は受取不可です。</li>
+              <li>料金不足のものは受取不可です。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== contact / sns ===== -->
+    <section class="section section--contact" id="contact" data-section="contact">
+      <div class="container container--narrow reveal">
+        <h2 class="section__title section__title--sm"><span class="sym">@</span><span class="underline-chalk">SNS・お問い合わせ</span></h2>
+        <div class="contact__panel">
+          <ul class="sns" data-sns-list></ul>
+          <form class="form" id="contact-form" action="https://formspree.io/f/your_form_id" method="POST">
+            <div class="form__row">
+              <div class="form__field">
+                <label for="cf-name">お名前</label>
+                <input id="cf-name" type="text" name="name" autocomplete="name" required />
+              </div>
+              <div class="form__field">
+                <label for="cf-email">メールアドレス</label>
+                <input id="cf-email" type="email" name="email" autocomplete="email" required />
+              </div>
+            </div>
+            <div class="form__field">
+              <label for="cf-msg">メッセージ</label>
+              <textarea id="cf-msg" name="message" rows="3" required></textarea>
+            </div>
+            <button class="form__submit" type="submit">送信する</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="footer-year">2026</span> <span id="footer-title">nazeyama</span></p>
+    </div>
+  </footer>
+</body>
+</html>

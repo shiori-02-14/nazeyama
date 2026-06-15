@@ -1,0 +1,94 @@
+# ============================================================
+#  nazeyama 公式サイト  コンテンツ設定ファイル
+# ------------------------------------------------------------
+#  ここを編集するとサイトの文言・リンクが変わります。
+#  ・行頭の「#」はメモ（コメント）です。サイトには出ません。
+#  ・値は「キー: 値」で書きます。日本語はそのまま書けます。
+#  ・記号（: # " など）を含む値は "ダブルクォート" で囲みます。
+#  ・編集に迷ったら docs/ の編集マニュアルを見てください。
+# ============================================================
+
+site:
+  title: "nazeyama"
+  # メインキャッチ（名前の由来）。出典: X 場所欄/バナー
+  tagline: "Because it's there."
+  tagline_sub: "なぜ山に登るのか — そこに、山があるから。"
+  # サブコピー。出典: LINEスタンプ公式説明文
+  subcopy: "ほんのり物理が香る、にゃんこの日常"
+  description: "物理系YouTuber nazeyama の公式サイト。物理・勉強・日常を発信しています。"
+
+youtube:
+  # 出典: https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A
+  channel_id: "UCMn-qF0yqH-07bEJBaWUL5A"
+  channel_url: "https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A"
+  membership_url: "https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A/join"
+
+profile:
+  heading: "プロフィール"
+  # 出典: X @nazeyama__ プロフィール / 固定ポスト(2026-03-30)
+  lines:
+    - "宅浪(n=1) → 筑波大学 理工学群物理学類 卒業（2026年3月・学士）"
+    - "→ 大学院で物理学修士1年（外部院進）"
+    - "ちょっとYouTuber。物弱なりに物理学科で頑張っています。"
+    - "猫とミステリー小説が好きです。"
+  birthday: "11月16日"
+  origin: "「Because it's there.（なぜ山に登るのか → そこに山があるから）」が名前の由来です。"
+
+# SNSリンク（上から順に表示）。出典: X/Instagram は @nazeyama__
+sns:
+  - name: "YouTube"
+    url: "https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A"
+    handle: "@nazeyama"
+  - name: "X (Twitter)"
+    url: "https://x.com/nazeyama__"
+    handle: "@nazeyama__"
+  - name: "Instagram"
+    url: "https://www.instagram.com/nazeyama__"
+    handle: "@nazeyama__"
+  # TikTokはURL未確認のため非掲載。確定したら下の3行の先頭の「#」を外してください。
+  # - name: "TikTok"
+  #   url: "https://www.tiktok.com/@nazeyama__"
+  #   handle: "@nazeyama__"
+
+line_stamp:
+  name: "物理屋のネッコ / nazeyama"
+  url: "https://line.me/S/sticker/27507573/"
+  # 出典: LINE STORE 公式説明文
+  description: "猫好き理系大学生YouTuber nazeyama の、ほんのり物理が香る、にゃんこの日常スタンプ。"
+
+membership:
+  price: "月額80円"
+  url: "https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A/join"
+  note: "ゆるく応援してくれると嬉しいです。"
+
+fanletter:
+  postal: "〒573-0073"
+  address: "大阪府枚方市高田2丁目26-10-6 プレゼントハウス519「nazeyama」"
+  # 出典: YouTube概要欄
+  notes:
+    - "amazon等のECサイトから届く場合は、住所の下に「置き配禁止」の記載をお願いします。"
+    - "冷凍・冷蔵のものは受取不可です（常温保管のため）。"
+    - "大きすぎるもの（200サイズ以上）は受取不可です。"
+    - "料金不足のものは受取不可です。"
+
+events:
+  # 出典: teket
+  teket_url: "https://teket.jp/g/fqya421mg6"
+
+contact:
+  # ↓Formspree(https://formspree.io)で作ったフォームIDに差し替えてください
+  formspree_endpoint: "https://formspree.io/f/your_form_id"
+
+affiliate:
+  # ↓AmazonアソシエイトのトラッキングID（例: nazeyama-22）に差し替えてください
+  amazon_tag: "nazeyama-22"
+  disclosure: "当サイトはAmazonアソシエイト・プログラムの参加者です。適格販売により収入を得る場合があります。"
+
+# 各セクションの表示ON/OFF（false にすると非表示）
+display:
+  videos: true
+  neko: true
+  books: true
+  membership: true
+  fanletter: true
+  contact: true
