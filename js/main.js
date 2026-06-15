@@ -288,13 +288,23 @@ function renderHero(s) {
 function renderHeroProfile(p) {
   const el = $("#hero-profile");
   if (!el || !p) return;
-  const path = Array.isArray(p.path) ? p.path : [];
-  const pathHtml = path.map((item, i) => {
-    const sep = i > 0 ? '<span class="hero__path-sep" aria-hidden="true">→</span>' : "";
-    return '<span class="hero__path-step">' + sep + '<span class="hero__path-item">' + esc(item) + "</span></span>";
-  }).join("");
+  const path = Array.isArray(p.path) ? p.path.filter(Boolean) : [];
   const parts = [];
-  if (pathHtml) parts.push('<div class="hero__path">' + pathHtml + "</div>");
+  if (path.length) {
+    const bits = [];
+    path.forEach((item, i) => {
+      if (i > 0) {
+        bits.push(
+          '<span class="hero__path-sep" aria-hidden="true">' +
+          '<svg class="hero__path-arrow" viewBox="0 0 16 16" focusable="false">' +
+          '<path d="M5.5 3.5 10 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+          "</svg></span>"
+        );
+      }
+      bits.push('<span class="hero__path-item">' + esc(item) + "</span>");
+    });
+    parts.push('<div class="hero__path">' + bits.join("") + "</div>");
+  }
   if (p.role) parts.push('<span class="hero__tag">' + esc(p.role) + "</span>");
   if (p.bio) parts.push('<p class="hero__bio">' + esc(p.bio) + "</p>");
   if (p.likes) parts.push('<p class="hero__likes">' + esc(p.likes) + "</p>");
@@ -537,16 +547,16 @@ async function loadVideos() {
   // 同梱データを先に表示（fetch 待ちで空白にしない）
   const bundled = window.__NAZEYAMA_VIDEOS__;
   if (bundled && Array.isArray(bundled.videos) && bundled.videos.length) {
-    allVideos = bundled.videos.filter((v) => v.videoId);
+    allVideos = applyVideoTypes(bundled.videos.filter((v) => v.videoId));
     renderVideos();
   }
 
   let videos = [];
   const data = await loadJson("data/videos.json");
   if (data && Array.isArray(data.videos)) {
-    videos = data.videos.filter((v) => v.videoId);
+    videos = applyVideoTypes(data.videos.filter((v) => v.videoId));
   } else if (!videos.length && bundled && Array.isArray(bundled.videos)) {
-    videos = bundled.videos.filter((v) => v.videoId);
+    videos = applyVideoTypes(bundled.videos.filter((v) => v.videoId));
   }
 
   if (videos.length) {
@@ -555,7 +565,7 @@ async function loadVideos() {
   } else if (!allVideos.length) {
     const fromRss = await fetchRssVideos();
     if (fromRss && fromRss.length) {
-      allVideos = fromRss;
+      allVideos = applyVideoTypes(fromRss);
       renderVideos();
     }
   }
@@ -690,6 +700,21 @@ function guessType(title) {
   return "video";
 }
 
+function isLiveVideo(v) {
+  if (!v) return false;
+  if (v.type === "live") return true;
+  return guessType(v.title || "") === "live";
+}
+
+function applyVideoTypes(videos) {
+  return videos.map((v) => {
+    if (!v || v.type === "live" || v.type === "short") return v;
+    const guessed = guessType(v.title || "");
+    if (guessed === "video") return v;
+    return Object.assign({}, v, { type: guessed });
+  });
+}
+
 function resolveVideoType(v) {
   if (v.type === "live" || v.type === "short") return v.type;
   const guessed = guessType(v.title || "");
@@ -707,6 +732,7 @@ function formatVideoDate(raw) {
 function buildMarquee(track, videos) {
   const cardHtml = (v) => {
     const url = v.url || (v.videoId ? "https://www.youtube.com/watch?v=" + v.videoId : "#");
+    const showLive = isLiveVideo(v) || currentFilter === "live";
     const thumb = v.thumbnail
       ? '<img src="' + esc(v.thumbnail) + '" alt="" loading="lazy" decoding="async" width="320" height="180" onerror="this.style.display=\'none\'">'
       : '<span class="chalk-mini">▶ YouTubeで見る</span>';
@@ -717,11 +743,11 @@ function buildMarquee(track, videos) {
     const views = v.views
       ? '<span class="vcard__views">' + esc(v.views) + "</span>"
       : (v.viewCount ? '<span class="vcard__views">' + esc(v.viewCount.toLocaleString("ja-JP") + "回") + "</span>" : "");
-    const live = resolveVideoType(v) === "live"
-      ? '<span class="vcard__badge vcard__badge--live">ライブ</span>'
+    const live = showLive
+      ? '<span class="vcard__badge vcard__badge--live" lang="ja">ライブ</span>'
       : "";
     const member = v.membersOnly
-      ? '<span class="vcard__badge">メンバー限定</span>'
+      ? '<span class="vcard__badge vcard__badge--member" lang="ja">メンバー限定</span>'
       : "";
     const meta = date || views || member || live ? '<div class="vcard__meta">' + live + member + date + views + "</div>" : "";
     return (

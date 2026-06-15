@@ -339,22 +339,23 @@ img { max-width: 100%; display: block; }
 }
 .hero__path {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   margin-bottom: 12px;
   font-family: var(--font-body);
   font-size: clamp(0.68rem, 2.5vw, 0.8rem);
   color: var(--chalk);
   line-height: 1.35;
-}
-.hero__path-step {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
   max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
 }
+.hero__path::-webkit-scrollbar { display: none; }
 .hero__path-item {
+  flex-shrink: 0;
   padding: 2px 8px;
   border: 1px solid rgba(244, 241, 232, 0.35);
   border-radius: 999px;
@@ -364,10 +365,17 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 .hero__path-sep {
-  color: rgba(244, 241, 232, 0.55);
-  font-size: 0.65em;
-  padding: 0 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  color: rgba(244, 241, 232, 0.72);
+  line-height: 1;
+}
+.hero__path-arrow {
+  display: block;
+  width: 0.9em;
+  height: 0.9em;
 }
 .hero__tag {
   display: inline-block;
@@ -556,18 +564,27 @@ img { max-width: 100%; display: block; }
 .vcard__date { font-variant-numeric: tabular-nums; }
 .vcard__views { font-size: 0.78rem; color: var(--chalk-dim); }
 .vcard__badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #ffd54f;
-  border: 1px solid rgba(255, 213, 79, 0.45);
+  font-family: var(--font-body);
   border-radius: 4px;
   padding: 1px 6px;
   line-height: 1.5;
 }
+.vcard__badge--member {
+  color: #ffd54f;
+  background: rgba(18, 18, 18, 0.55);
+  border: 1px solid rgba(255, 213, 79, 0.55);
+}
 .vcard__badge--live {
-  color: #ff8a80;
-  border-color: rgba(255, 138, 128, 0.5);
+  color: #ffc8c4;
+  background: rgba(18, 18, 18, 0.55);
+  border: 1px solid rgba(255, 138, 128, 0.72);
 }
 
 /* ---------- neko ---------- */
@@ -1029,33 +1046,16 @@ img { max-width: 100%; display: block; }
     overflow: visible;
   }
   .hero__path {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 4px;
-    width: 100%;
+    gap: 5px;
     margin-bottom: 10px;
   }
-  .hero__path-step {
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    min-width: 0;
-  }
-  .hero__path-sep {
-    color: rgba(244, 241, 232, 0.55);
-    font-size: 0.65em;
-    padding: 0 1px;
-    flex-shrink: 0;
-  }
   .hero__path-item {
-    white-space: nowrap;
-    text-align: center;
     font-size: clamp(0.58rem, 2.35vw, 0.72rem);
     padding: 3px 8px;
-    width: auto;
-    box-sizing: border-box;
+  }
+  .hero__path-arrow {
+    width: 0.85em;
+    height: 0.85em;
   }
   .hero__title {
     font-size: clamp(1.65rem, 7.5vw, 2.2rem);
