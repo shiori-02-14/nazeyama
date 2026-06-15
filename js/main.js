@@ -291,7 +291,7 @@ function renderHeroProfile(p) {
   const path = Array.isArray(p.path) ? p.path : [];
   const pathHtml = path.map((item, i) => {
     const sep = i > 0 ? '<span class="hero__path-sep" aria-hidden="true">→</span>' : "";
-    return sep + '<span class="hero__path-item">' + esc(item) + "</span>";
+    return '<span class="hero__path-step">' + sep + '<span class="hero__path-item">' + esc(item) + "</span></span>";
   }).join("");
   const parts = [];
   if (pathHtml) parts.push('<div class="hero__path">' + pathHtml + "</div>");
