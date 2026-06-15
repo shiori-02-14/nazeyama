@@ -1,90 +1,33 @@
 /* =========================================================
    nazeyama 公式サイト  メインスクリプト
-   - content/*.yaml を読み込んで各セクションを描画
+   - content/site.yaml を読み込んで各セクションを描画
    - 動画マーキー / 登録者数カウンター / タブ / スクロール演出
    - 読み込み失敗時は下の DEFAULTS にフォールバック（file:// でも表示できる）
    ========================================================= */
 
 const CHANNEL_ID = "UCMn-qF0yqH-07bEJBaWUL5A";
-const RSS_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=" + CHANNEL_ID;
+const rssUrl = (id) => "https://www.youtube.com/feeds/videos.xml?channel_id=" + (id || CHANNEL_ID);
 const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const PAGE = document.body.dataset.page || "home";
 let allVideos = [];
 let currentFilter = "all";
 let currentSort = "date";
-const MARQUEE_PX_PER_SEC = 26; // 流れる速さ（px/秒）。小さいほど遅い
+const MARQUEE_PX_PER_SEC = 26;
 
-/* ---- フォールバック用デフォルト（content/site.yaml と同等） ---- */
-const DEFAULTS = {
-  site: {
-    title: "nazeyama",
-    tagline: "Because it's there.",
-    tagline_sub: "なぜ山に登るのか — そこに、山があるから。",
-    subcopy: "ほんのり物理が香る、にゃんこの日常",
-  },
-  youtube: {
-    channel_url: "https://www.youtube.com/channel/" + CHANNEL_ID,
-    membership_url: "https://www.youtube.com/channel/" + CHANNEL_ID + "/join",
-  },
-  profile: {
-    path: ["宅浪(n=1)", "筑波大学卒業", "物理修士1年"],
-    bio: "双極性障害と付き合いながら、物弱なりに物理学科で頑張っています。📚✍🏻",
-    likes: "猫とミステリー小説が好きです。🐱",
-    birthday: "11月16日",
-    origin: "「Because it's there.（なぜ山に登るのか → そこに山があるから）」が名前の由来です。",
-  },
-  sns: [
-    { name: "YouTube", url: "https://www.youtube.com/channel/" + CHANNEL_ID, handle: "@nazeyama" },
-    { name: "X (Twitter)", url: "https://x.com/nazeyama__", handle: "@nazeyama__" },
-    { name: "Instagram", url: "https://www.instagram.com/nazeyama__", handle: "@nazeyama__" },
-  ],
-  line_stamp: {
-    name: "物理屋のネッコ / nazeyama",
-    url: "https://line.me/S/sticker/27507573/",
-    description: "猫好き理系大学生YouTuber nazeyama の、ほんのり物理が香る、にゃんこの日常スタンプ。",
-  },
-  membership: { price: "月額80円", url: "https://www.youtube.com/channel/" + CHANNEL_ID + "/join", note: "ゆるく応援してくれると嬉しいです。" },
-  fanletter: {
-    postal: "〒573-0073",
-    address: "大阪府枚方市高田2丁目26-10-6 プレゼントハウス519「nazeyama」",
-    notes: [
-      "amazon等のECサイトから届く場合は、住所の下に「置き配禁止」の記載をお願いします。",
-      "冷凍・冷蔵のものは受取不可です（常温保管のため）。",
-      "大きすぎるもの（200サイズ以上）は受取不可です。",
-      "料金不足のものは受取不可です。",
-    ],
-  },
-  contact: { formspree_endpoint: "https://formspree.io/f/your_form_id" },
-  affiliate: {
-    amazon_tag: "nazeyama-22",
-    disclosure: "当サイトはAmazonアソシエイト・プログラムの参加者です。適格販売により収入を得る場合があります。",
-  },
+/* YAML 読み込み失敗時の最小フォールバック（file:// プレビュー用） */
+const MIN_DEFAULTS = {
+  site: { title: "nazeyama", tagline: "", subcopy: "" },
+  images: { logo: "assets/images/nazeyama.jpg", neko: "assets/images/physicsneko.png" },
+  youtube: { channel_id: CHANNEL_ID },
+  profile: {},
+  sns: [],
+  line_stamp: {},
+  membership: {},
+  fanletter: { notes: [] },
+  contact: {},
+  affiliate: {},
   display: { videos: true, neko: true, books: true, membership: true, fanletter: true, contact: true },
-};
-
-const BOOKS_DEFAULTS = {
-  novels: {
-    label: "小説（ミステリー）",
-    note: "綾辻行人さんの作品。本格ミステリー好きにおすすめ。",
-    items: [
-      { title: "十角館の殺人", author: "綾辻行人", asin: "", comment: "新本格の金字塔。まずはここから。" },
-      { title: "時計館の殺人", author: "綾辻行人", asin: "", comment: "館シリーズの代表作。" },
-      { title: "迷路館の殺人", author: "綾辻行人", asin: "", comment: "作中作の仕掛けが鮮やか。" },
-      { title: "人形館の殺人", author: "綾辻行人", asin: "", comment: "シリーズ屈指の異色作。" },
-      { title: "Another", author: "綾辻行人", asin: "", comment: "ホラー×ミステリー。" },
-    ],
-  },
-  exam: {
-    label: "院試の参考書（サンプル）",
-    note: "※ここはサンプルです。実際に使った参考書に差し替えてください。",
-    items: [
-      { title: "詳解 力学演習", author: "—", asin: "", comment: "（サンプル）力学の演習に。" },
-      { title: "ジャクソン 電磁気学", author: "J. D. Jackson", asin: "", comment: "（サンプル）電磁気の定番。" },
-      { title: "現代の量子力学", author: "J. J. サクライ", asin: "", comment: "（サンプル）量子力学の定番。" },
-      { title: "古典力学", author: "ゴールドスタイン", asin: "", comment: "（サンプル）解析力学。" },
-      { title: "統計力学", author: "田崎晴明", asin: "", comment: "（サンプル）統計力学の名著。" },
-    ],
-  },
+  books: { novels: { items: [] }, exam: { items: [] } },
 };
 
 const STATS_DEFAULT = { subscribers: 35293, views: 7751078, videos: 356 };
@@ -144,20 +87,18 @@ document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   const siteRaw = await loadYaml("content/site.yaml");
-  const site = mergeDeep(structuredCloneSafe(DEFAULTS), siteRaw || {});
+  const site = normalizeSite(mergeDeep(structuredCloneSafe(MIN_DEFAULTS), siteRaw || {}));
 
+  applyImages(site.images);
   applyDisplay(site.display || {});
   renderFooter(site);
-  setHref("#nav-cta", site.youtube && site.youtube.channel_url);
+  setHref("#nav-cta", site.youtube.channel_url);
   setupNav();
   setupReveal();
 
   if (PAGE === "books") {
-    const [booksRaw, booksMeta] = await Promise.all([
-      loadYaml("content/books.yaml"),
-      loadJson("data/books.json"),
-    ]);
-    renderBooks(mergeBooksMeta(booksRaw || BOOKS_DEFAULTS, booksMeta), site);
+    const booksMeta = await loadJson("data/books.json");
+    renderBooks(mergeBooksMeta(site.books, booksMeta), site);
     return;
   }
 
@@ -189,6 +130,31 @@ function mergeDeep(base, over) {
     }
   }
   return out;
+}
+
+function normalizeSite(site) {
+  const cid = site.youtube?.channel_id || CHANNEL_ID;
+  const base = "https://www.youtube.com/channel/" + cid;
+  site.youtube = { channel_id: cid, channel_url: base, membership_url: base + "/join" };
+  if (!site.membership) site.membership = {};
+  if (!site.membership.url) site.membership.url = site.youtube.membership_url;
+  return site;
+}
+
+function applyImages(images) {
+  if (!images) return;
+  if (images.logo) {
+    $$(".nav__logo-icon, .hero__icon").forEach((el) => el.setAttribute("src", images.logo));
+    $$('link[rel="icon"], link[rel="apple-touch-icon"]').forEach((el) => el.setAttribute("href", images.logo));
+  }
+  if (images.neko) {
+    const neko = $(".neko__img");
+    if (neko) neko.setAttribute("src", images.neko);
+  }
+  if (images.ogp) {
+    const og = $('meta[property="og:image"]');
+    if (og) og.setAttribute("content", images.ogp);
+  }
 }
 
 /* ---------------- display toggle ---------------- */
@@ -307,8 +273,8 @@ function mergeBooksMeta(books, meta) {
       if (!m) return b;
       return {
         ...b,
-        asin: b.asin || m.asin || "",
-        coverUrl: m.coverUrl || b.coverUrl || "",
+        asin: m.asin || "",
+        coverUrl: m.coverUrl || "",
       };
     });
   }
@@ -554,7 +520,7 @@ async function fetchRssVideos() {
   ];
   for (const build of proxies) {
     try {
-      const res = await fetch(build(RSS_URL), { cache: "no-store" });
+      const res = await fetch(build(rssUrl()), { cache: "no-store" });
       if (!res.ok) continue;
       let text = await res.text();
       if (text.startsWith("{")) {

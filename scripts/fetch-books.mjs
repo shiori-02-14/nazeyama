@@ -1,5 +1,5 @@
 // =========================================================
-//  content/books.yaml を読み、Amazon 書籍検索から表紙・ASIN を取得
+//  content/site.yaml の books から表紙・ASIN を Amazon 検索で取得
 //  data/books.json に保存（GitHub Actions / 手動実行）
 // =========================================================
 import { readFile, writeFile } from "node:fs/promises";
@@ -22,17 +22,25 @@ function bookKey(title, author) {
   return String(title || "").trim() + "\0" + String(author || "").trim();
 }
 
-function parseBooksYaml(src) {
+/** site.yaml の books: ブロックだけを抜き出してパース（依存ライブラリなし） */
+function parseBooksFromSiteYaml(src) {
   const result = { novels: { items: [] }, exam: { items: [] } };
+  let inBooks = false;
   let section = null;
   let item = null;
   for (const raw of src.split("\n")) {
     const line = raw.replace(/\r$/, "");
-    if (/^novels:/.test(line)) {
+    if (/^books:\s*$/.test(line)) {
+      inBooks = true;
+      continue;
+    }
+    if (inBooks && /^[a-z_]+:/.test(line) && !/^\s/.test(line)) break;
+    if (!inBooks) continue;
+    if (/^\s+novels:/.test(line)) {
       section = "novels";
       continue;
     }
-    if (/^exam:/.test(line)) {
+    if (/^\s+exam:/.test(line)) {
       section = "exam";
       continue;
     }
@@ -46,8 +54,8 @@ function parseBooksYaml(src) {
       continue;
     }
     const fieldM =
-      line.match(/^\s+(author|asin|comment):\s+"(.*)"\s*$/) ||
-      line.match(/^\s+(author|asin|comment):\s+(.*)\s*$/);
+      line.match(/^\s+(author|comment):\s+"(.*)"\s*$/) ||
+      line.match(/^\s+(author|comment):\s+(.*)\s*$/);
     if (fieldM && item) item[fieldM[1]] = fieldM[2].replace(/^"|"$/g, "");
   }
   return result;
@@ -119,7 +127,7 @@ async function enrichCategoryItems(items, prevMap) {
   for (const book of items) {
     const key = bookKey(book.title, book.author);
     const prev = prevMap.get(key) || {};
-    let asin = book.asin || prev.asin || "";
+    let asin = prev.asin || "";
     let coverUrl = prev.coverUrl || "";
 
     if (!asin || !coverUrl) {
@@ -144,8 +152,11 @@ async function enrichCategoryItems(items, prevMap) {
 }
 
 export async function fetchBooks() {
-  const yaml = await readFile("content/books.yaml", "utf8");
-  const books = parseBooksYaml(yaml);
+  const books = parseBooksFromSiteYaml(await readFile("content/site.yaml", "utf8"));
+  if (!books.novels.items.length && !books.exam.items.length) {
+    throw new Error("site.yaml の books: に本がありません");
+  }
+
   const prev = await readJson("data/books.json", { novels: { items: [] }, exam: { items: [] } });
   const prevMap = prevItemMap(prev);
 
