@@ -7,6 +7,7 @@
 import { writeFile, readFile } from "node:fs/promises";
 import { fetchBooks } from "./fetch-books.mjs";
 import { syncSeo } from "./sync-seo.mjs";
+import { exportSiteBundle } from "./export-site.mjs";
 
 const CHANNEL_ID = "UCMn-qF0yqH-07bEJBaWUL5A";
 const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
@@ -458,4 +459,11 @@ try {
   await syncSeo();
 } catch (e) {
   console.error("seo sync failed:", e.message);
+}
+
+// --- site.yaml → site.js（ローカル file:// プレビュー用） ---
+try {
+  await exportSiteBundle();
+} catch (e) {
+  console.error("site export failed:", e.message);
 }

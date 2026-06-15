@@ -101,7 +101,7 @@ async function loadJson(path, retries = 3) {
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-  const siteRaw = await loadYaml("content/site.yaml");
+  const siteRaw = (await loadYaml("content/site.yaml")) || window.__NAZEYAMA_SITE__ || null;
   const site = normalizeSite(mergeDeep(structuredCloneSafe(MIN_DEFAULTS), siteRaw || {}));
 
   applyImages(site.images);
