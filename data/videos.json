@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-15",
+  "updated": "2026-06-16",
   "source": "youtube-channel",
   "videos": [
     {
@@ -17,8 +17,8 @@
       "title": "理系大学院生のバイトして研究室にいく土曜日VLOG #vlog #物理学科",
       "videoId": "d6n2Vscd0AI",
       "url": "https://www.youtube.com/shorts/d6n2Vscd0AI",
-      "views": "7,971回",
-      "viewCount": 7971,
+      "views": "7,986回",
+      "viewCount": 7986,
       "thumbnail": "https://i.ytimg.com/vi/d6n2Vscd0AI/mqdefault.jpg",
       "published": "2026-06-11",
       "membersOnly": false,
@@ -594,6 +594,17 @@
       "thumbnail": "https://i.ytimg.com/vi/o2ySWchE8ZY/mqdefault.jpg",
       "published": "2025-06-01",
       "membersOnly": false,
+      "type": "live"
+    },
+    {
+      "title": "初メンバーシップ配信",
+      "videoId": "ov_uTgZAal4",
+      "url": "https://www.youtube.com/watch?v=ov_uTgZAal4",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/ov_uTgZAal4/mqdefault.jpg",
+      "published": "2025-04-29",
+      "membersOnly": true,
       "type": "live"
     },
     {
