@@ -3,6 +3,17 @@
   "source": "youtube-channel",
   "videos": [
     {
+      "title": "初心者ホラゲー配信！【閉店事件】〜前編〜/チラズアート",
+      "videoId": "6_7FeBXgLIM",
+      "url": "https://www.youtube.com/watch?v=6_7FeBXgLIM",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/6_7FeBXgLIM/mqdefault.jpg",
+      "published": "2026-06-27",
+      "membersOnly": false,
+      "type": "live"
+    },
+    {
       "title": "寝れないから、私がチョロすぎる件について考えるよ",
       "videoId": "oWgJFfZIYqY",
       "url": "https://www.youtube.com/watch?v=oWgJFfZIYqY",
@@ -36,7 +47,7 @@
       "type": "video"
     },
     {
-      "title": "初心者ホラゲー配信！【閉店事件】/チラズアート",
+      "title": "初心者ホラゲー配信！【閉店事件】〜前編〜/チラズアート",
       "videoId": "cMxMudk7x_E",
       "url": "https://www.youtube.com/watch?v=cMxMudk7x_E",
       "views": "",
@@ -61,8 +72,8 @@
       "title": "30年後後悔したくないならの行動した方がいいかな〜という。",
       "videoId": "5k2vqT_xAd4",
       "url": "https://www.youtube.com/shorts/5k2vqT_xAd4",
-      "views": "7,559回",
-      "viewCount": 7559,
+      "views": "7,604回",
+      "viewCount": 7604,
       "thumbnail": "https://i.ytimg.com/vi/5k2vqT_xAd4/mqdefault.jpg",
       "published": "2026-06-18",
       "membersOnly": false,
@@ -94,8 +105,8 @@
       "title": "理系大学院生のバイトして研究室にいく土曜日VLOG #vlog #物理学科",
       "videoId": "d6n2Vscd0AI",
       "url": "https://www.youtube.com/shorts/d6n2Vscd0AI",
-      "views": "9,456回",
-      "viewCount": 9456,
+      "views": "9,493回",
+      "viewCount": 9493,
       "thumbnail": "https://i.ytimg.com/vi/d6n2Vscd0AI/mqdefault.jpg",
       "published": "2026-06-11",
       "membersOnly": false,
@@ -314,8 +325,8 @@
       "title": "たまにバズってる筆記音動画やってみた #画質悪い",
       "videoId": "Vwg8LbxW12E",
       "url": "https://www.youtube.com/shorts/Vwg8LbxW12E",
-      "views": "5,046回",
-      "viewCount": 5046,
+      "views": "5,051回",
+      "viewCount": 5051,
       "thumbnail": "https://i.ytimg.com/vi/Vwg8LbxW12E/mqdefault.jpg",
       "published": "2026-04-10",
       "membersOnly": false,
@@ -721,8 +732,8 @@
       "title": "とりあえず息してれば終わります。応援してます😢😢",
       "videoId": "P7M5gudoTG4",
       "url": "https://www.youtube.com/shorts/P7M5gudoTG4",
-      "views": "8,912回",
-      "viewCount": 8912,
+      "views": "8,914回",
+      "viewCount": 8914,
       "thumbnail": "https://i.ytimg.com/vi/P7M5gudoTG4/mqdefault.jpg",
       "published": "2025-01-16",
       "membersOnly": false,
@@ -864,8 +875,8 @@
       "title": "お風呂キャンセル界隈に物申してしまう理系陰キャ大学生 #物理学科 #理系 #理系大学生 #お風呂キャンセル界隈",
       "videoId": "Umu-CHM4q4o",
       "url": "https://www.youtube.com/shorts/Umu-CHM4q4o",
-      "views": "8,230回",
-      "viewCount": 8230,
+      "views": "8,236回",
+      "viewCount": 8236,
       "thumbnail": "https://i.ytimg.com/vi/Umu-CHM4q4o/mqdefault.jpg",
       "published": "2024-10-15",
       "membersOnly": false,
@@ -980,17 +991,6 @@
       "published": "2024-09-09",
       "membersOnly": false,
       "type": "video"
-    },
-    {
-      "title": "バタバタの近況を話すよ〜",
-      "videoId": "XsM1oxJSGR8",
-      "url": "https://www.youtube.com/watch?v=XsM1oxJSGR8",
-      "views": "3,791回",
-      "viewCount": 3791,
-      "thumbnail": "https://i.ytimg.com/vi/XsM1oxJSGR8/mqdefault.jpg",
-      "published": "2024-09-05",
-      "membersOnly": false,
-      "type": "live"
     }
   ]
 }
