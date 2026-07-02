@@ -122,6 +122,8 @@ nazeyama/
 
 **今すぐ更新** → GitHub **Actions** → **Update data** → **Run workflow**
 
+**再生数が空の動画がある場合** → YouTube の CAPTCHA で個別ページ取得が止まることがあります。GitHub リポジトリの **Settings → Secrets → Actions** に `YOUTUBE_API_KEY`（YouTube Data API v3 のキー）を登録すると、再生数を一括で安定取得できます。
+
 ---
 
 ## 困ったとき

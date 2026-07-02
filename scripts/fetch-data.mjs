@@ -22,8 +22,11 @@ const FETCH_HEADERS = {
   "User-Agent":
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
 };
-const META_CONCURRENCY = 6;
-const FETCH_RETRIES = 3;
+const META_CONCURRENCY = 1;
+const META_DELAY_MS = 1200;
+const FETCH_RETRIES = 2;
+const MIN_HTML_BYTES = 50000;
+const MAX_CAPTCHA_STREAK = 3;
 const MIN_TRUSTED_ITEMS = 10;
 const today = new Date().toISOString().slice(0, 10);
 
@@ -46,9 +49,8 @@ async function fetchWithRetry(url, options = {}, retries = FETCH_RETRIES) {
   throw lastErr;
 }
 
-function extractYtInitialData(html) {
-  const marker = "var ytInitialData = ";
-  const start = html.indexOf(marker);
+function extractJsonBlock(html, marker) {
+  const start = String(html).indexOf(marker);
   if (start === -1) return null;
   const jsonStart = start + marker.length;
   if (html[jsonStart] !== "{") return null;
@@ -85,6 +87,31 @@ function extractYtInitialData(html) {
   return null;
 }
 
+function extractYtInitialData(html) {
+  return extractJsonBlock(html, "var ytInitialData = ");
+}
+
+function isCaptchaPage(html) {
+  const s = String(html);
+  return (
+    s.length < MIN_HTML_BYTES ||
+    (s.includes("captcha-form") && !s.includes("ytInitialData")) ||
+    (s.includes("g-recaptcha") && !s.includes("ytInitialPlayerResponse"))
+  );
+}
+
+function extractLockupViewCount(lv) {
+  const rows =
+    lv.metadata?.lockupMetadataViewModel?.metadata?.contentMetadataViewModel?.metadataRows || [];
+  for (const row of rows) {
+    for (const part of row.metadataParts || []) {
+      const count = parseJapaneseViewCount(part.text?.content || "");
+      if (count != null) return count;
+    }
+  }
+  return null;
+}
+
 async function mapPool(items, fn, concurrency = META_CONCURRENCY) {
   const results = new Array(items.length);
   let idx = 0;
@@ -109,6 +136,10 @@ function mergeVideoLists(prevVideos, newVideos) {
     const merged = { ...prevEntry, ...v, videoId: v.videoId };
     if (prevEntry.type === "live" || v.type === "live") merged.type = "live";
     if (prevEntry.type === "short" || v.type === "short") merged.type = "short";
+    if (prevEntry.viewCount != null && (merged.viewCount == null || merged.viewCount <= 0)) {
+      merged.viewCount = prevEntry.viewCount;
+      merged.views = prevEntry.views || formatViews(prevEntry.viewCount);
+    }
     map.set(v.videoId, merged);
   }
   const seen = new Set();
@@ -138,9 +169,44 @@ function formatViews(n) {
   return n.toLocaleString("ja-JP") + "回";
 }
 
-function parseViewCount(html) {
-  const m = String(html).match(/"viewCount":"(\d+)"/);
-  return m ? Number(m[1]) : null;
+function pickViewCount(next, prev) {
+  if (typeof next === "number" && next > 0 && typeof prev === "number" && prev > 0) {
+    return Math.max(next, prev);
+  }
+  if (typeof next === "number" && next > 0) return next;
+  if (typeof prev === "number" && prev > 0) return prev;
+  return next ?? prev ?? null;
+}
+
+function parseViewCount(html, videoId = "") {
+  if (!html || isCaptchaPage(html)) return null;
+  const s = String(html);
+  const direct = s.match(/"viewCount":"(\d+)"/);
+  if (direct) return Number(direct[1]);
+
+  const player = extractJsonBlock(s, "var ytInitialPlayerResponse = ");
+  if (player?.videoDetails?.viewCount) return Number(player.videoDetails.viewCount);
+
+  const primary = s.match(
+    /"videoPrimaryInfoRenderer"[\s\S]{0,5000}?"(?:simpleText|content)":"([\d,.]+(?:万)?回視聴)"/
+  );
+  if (primary) {
+    const count = parseJapaneseViewCount(primary[1]);
+    if (count != null) return count;
+  }
+
+  if (videoId) {
+    const near = s.match(
+      new RegExp(
+        `"${videoId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[\\s\\S]{0,2500}?"(?:simpleText|content)":"([\\d,.]+(?:万)?回視聴)"`
+      )
+    );
+    if (near) {
+      const count = parseJapaneseViewCount(near[1]);
+      if (count != null) return count;
+    }
+  }
+  return null;
 }
 
 function parseUploadDate(html) {
@@ -187,17 +253,106 @@ async function fetchVideoMeta(id, hintType = "video", forceLive = false) {
   let viewCount = null;
   let published = "";
   let title = "";
-  try {
-    const res = await fetch(`https://www.youtube.com/watch?v=${id}`, { headers: FETCH_HEADERS });
-    if (res.ok) {
-      const html = await res.text();
-      viewCount = parseViewCount(html);
-      published = parseUploadDate(html);
-      title = parseTitle(html);
-      type = forceLive || hintType === "live" ? "live" : parseVideoType(html, id);
+  let captcha = false;
+  const urls =
+    hintType === "short"
+      ? [`https://www.youtube.com/shorts/${id}`, `https://www.youtube.com/watch?v=${id}`]
+      : [`https://www.youtube.com/watch?v=${id}`];
+
+  for (let attempt = 0; attempt < FETCH_RETRIES; attempt++) {
+    if (attempt > 0) await sleep(1500 * attempt);
+    for (const url of urls) {
+      try {
+        const res = await fetch(url, { headers: FETCH_HEADERS });
+        if (!res.ok) continue;
+        const html = await res.text();
+        if (isCaptchaPage(html)) {
+          captcha = true;
+          continue;
+        }
+        captcha = false;
+        const parsedViews = parseViewCount(html, id);
+        if (parsedViews != null) viewCount = parsedViews;
+        published = parseUploadDate(html) || published;
+        title = parseTitle(html) || title;
+        type = forceLive || hintType === "live" ? "live" : parseVideoType(html, id);
+        if (viewCount != null) return { type, viewCount, published, title, captcha: false };
+      } catch {}
     }
-  } catch {}
-  return { type, viewCount, published, title };
+  }
+  return { type, viewCount, published, title, captcha };
+}
+
+async function fetchViewCountsFromApi(ids) {
+  const key = process.env.YOUTUBE_API_KEY;
+  if (!key || !ids.length) return new Map();
+  const map = new Map();
+  for (let i = 0; i < ids.length; i += 50) {
+    const chunk = ids.slice(i, i + 50);
+    const url = new URL("https://www.googleapis.com/youtube/v3/videos");
+    url.searchParams.set("part", "statistics");
+    url.searchParams.set("id", chunk.join(","));
+    url.searchParams.set("key", key);
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        console.warn("YouTube API:", res.status, chunk.length, "ids");
+        continue;
+      }
+      const json = await res.json();
+      for (const item of json.items || []) {
+        const vc = Number(item.statistics?.viewCount);
+        if (Number.isFinite(vc) && vc >= 0) map.set(item.id, vc);
+      }
+    } catch (e) {
+      console.warn("YouTube API failed:", e.message);
+    }
+  }
+  return map;
+}
+
+async function applyApiViewCounts(videos) {
+  const ids = videos.map((v) => v.videoId).filter(Boolean);
+  const apiViews = await fetchViewCountsFromApi(ids);
+  if (!apiViews.size) return 0;
+  let updated = 0;
+  for (const v of videos) {
+    const vc = apiViews.get(v.videoId);
+    if (vc == null) continue;
+    v.viewCount = pickViewCount(vc, v.viewCount);
+    v.views = formatViews(v.viewCount);
+    updated++;
+  }
+  console.log(`YouTube API viewCount updated: ${updated}/${videos.length}`);
+  return updated;
+}
+
+async function enrichMissingVideoMeta(videos, liveIds) {
+  const targets = videos.filter((v) => v.viewCount == null || !v.published);
+  if (!targets.length) return;
+  let captchaStreak = 0;
+  for (const v of targets) {
+    if (captchaStreak >= MAX_CAPTCHA_STREAK) {
+      console.warn(`stopping meta fetch after ${MAX_CAPTCHA_STREAK} captcha pages`);
+      break;
+    }
+    const isLive = v.type === "live" || liveIds.has(v.videoId);
+    const meta = await fetchVideoMeta(v.videoId, v.type, isLive);
+    v.type = isLive ? "live" : meta.type;
+    if (meta.viewCount != null) {
+      v.viewCount = meta.viewCount;
+      v.views = formatViews(meta.viewCount);
+      captchaStreak = 0;
+    } else if (meta.captcha) {
+      captchaStreak++;
+    }
+    if (!v.published && meta.published) v.published = meta.published;
+    if (!v.title && meta.title) v.title = meta.title;
+    if (v.type === "short" && !v.url.includes("/shorts/")) {
+      v.url = `https://www.youtube.com/shorts/${v.videoId}`;
+    }
+    await sleep(META_DELAY_MS);
+  }
 }
 
 function walkLockupViewModels(node, out) {
@@ -209,7 +364,14 @@ function walkLockupViewModels(node, out) {
       lv.contentId ||
       lv.contentImage?.thumbnailViewModel?.image?.sources?.[0]?.url?.match(/vi\/([^/]+)/)?.[1];
     const title = lv.metadata?.lockupMetadataViewModel?.title?.content;
-    if (id) out.push({ videoId: id, title: title || "", membersOnly: isMembersOnlyLockup(lv) });
+    if (id) {
+      out.push({
+        videoId: id,
+        title: title || "",
+        membersOnly: isMembersOnlyLockup(lv),
+        viewCount: extractLockupViewCount(lv),
+      });
+    }
   }
   for (const key of Object.keys(node)) walkLockupViewModels(node[key], out);
 }
@@ -222,6 +384,7 @@ function walkStreamsLockupViewModels(node, out) {
       videoId: lv.contentId,
       title: lv.metadata?.lockupMetadataViewModel?.title?.content || "",
       membersOnly: isMembersOnlyLockup(lv),
+      viewCount: extractLockupViewCount(lv),
       type: "live",
     });
   }
@@ -345,7 +508,7 @@ async function fetchVideos() {
     const rss = rssMap.get(videoId);
     const prevVideo = prevMap[videoId] || {};
     const isShort = hintType === "short";
-    const viewCount = hintViews ?? prevVideo.viewCount ?? null;
+    const viewCount = pickViewCount(hintViews, prevVideo.viewCount);
     return {
       title: rss?.title || title || prevVideo.title || "",
       videoId,
@@ -361,20 +524,8 @@ async function fetchVideos() {
     };
   }).filter((v) => v.videoId);
 
-  await mapPool(videos, async (v) => {
-    const isLive = v.type === "live" || liveIds.has(v.videoId);
-    const meta = await fetchVideoMeta(v.videoId, v.type, isLive);
-    v.type = isLive ? "live" : meta.type;
-    if (meta.viewCount != null) {
-      v.viewCount = meta.viewCount;
-      v.views = formatViews(meta.viewCount);
-    }
-    if (!v.published && meta.published) v.published = meta.published;
-    if (!v.title && meta.title) v.title = meta.title;
-    if (v.type === "short" && !v.url.includes("/shorts/")) {
-      v.url = `https://www.youtube.com/shorts/${v.videoId}`;
-    }
-  });
+  await applyApiViewCounts(videos);
+  await enrichMissingVideoMeta(videos, liveIds);
 
   // 取得件数が少なすぎるときは前回データを残す（一時的な YouTube 側エラー対策）
   if (channelFetched < MIN_TRUSTED_ITEMS && prevCount >= MIN_TRUSTED_ITEMS) {
@@ -386,6 +537,9 @@ async function fetchVideos() {
     if (liveIds.has(v.videoId)) v.type = "live";
   }
   videos.sort((a, b) => String(b.published || "").localeCompare(String(a.published || "")));
+
+  const missingViews = videos.filter((v) => !(v.viewCount > 0)).length;
+  if (missingViews) console.warn(`viewCount missing for ${missingViews}/${videos.length} videos`);
 
   return videos;
 }

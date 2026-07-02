@@ -25,6 +25,8 @@ jobs:
           node-version: 20
 
       - name: Fetch latest data
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: node scripts/fetch-data.mjs
 
       - name: Commit & push if changed
