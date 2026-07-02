@@ -1,7 +1,9 @@
-# nazeyama 公式サイト — 編集ガイド
+# nazeyama 非公式ファンサイト — 編集ガイド
 
 **普段触るのは `content/site.yaml` だけ**です。  
 動画・登録者数・本の表紙は **自動更新** されます。
+
+**このサイトは nazeyama さんの非公式ファンサイトです。** 運営者は shiori-02-14 で、nazeyama 本人・公式運営とは無関係です。免責文や運営者名は `site.yaml` の `operator:` / `disclaimer:` で編集できます。
 
 **基本は GitHub のブラウザで編集** すればOKです（VS Code や特別なツールは不要）。
 
@@ -50,6 +52,7 @@ PC に VS Code がある人向けです。**Git 拡張機能**（最初から入
 | 番号 | 内容 | 例 |
 | --- | --- | --- |
 | ① | サイト名・キャッチ・**検索キーワード** | `tagline:` / `seo:` |
+| — | 運営者・免責文 | `operator:` / `disclaimer:` |
 | ② | 画像ファイル名 | `logo:` / `neko:` |
 | ③ | YouTube チャンネル | `channel_id:` |
 | ④ | プロフィール | `path:` / `bio:` |

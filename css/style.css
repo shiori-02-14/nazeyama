@@ -1,5 +1,5 @@
 /* =========================================================
-   nazeyama 公式サイト  スタイル（黒板＆チョークテーマ）
+   nazeyama 非公式ファンサイト  スタイル（黒板＆チョークテーマ）
    - 色は :root のCSS変数でまとめて管理
    ========================================================= */
 
@@ -936,10 +936,23 @@ img { max-width: 100%; display: block; }
   margin-top: 2px;
 }
 
+/* ---------- disclaimer banner ---------- */
+.site-disclaimer {
+  position: relative;
+  z-index: 2;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--chalk-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--chalk-faint);
+}
+
 /* ---------- footer ---------- */
 .footer {
   border-top: 1px solid var(--chalk-faint);
-  padding: 14px 0 18px;
+  padding: 18px 0 22px;
   text-align: center;
   color: var(--chalk-dim);
   font-size: 0.82rem;
@@ -947,6 +960,23 @@ img { max-width: 100%; display: block; }
   z-index: 1;
 }
 .footer p { margin: 0; }
+.footer__disclaimer {
+  max-width: 640px;
+  margin: 0 auto 10px;
+  font-size: 0.72rem;
+  line-height: 1.65;
+  color: var(--chalk-faint);
+}
+.footer__copy {
+  font-size: 0.82rem;
+}
+
+.contact__intro {
+  margin: 14px 0 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--chalk-dim);
+}
 
 /* ---------- reveal animation ---------- */
 .reveal {

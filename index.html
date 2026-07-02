@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nazeyama【公式サイト】</title>
-  <meta name="description" content="YouTubeチャンネル nazeyamaの公式ホームページです。物理・受験生・大学生・大学院生向けの動画紹介やおすすめの参考書を掲載しています。" />
+  <title>nazeyama【非公式ファンサイト】</title>
+  <meta name="description" content="YouTubeチャンネル nazeyama のファンが制作・運営する非公式ファンサイトです。nazeyama 本人・公式運営とは無関係であり、公式の承認・後援は受けていません。" />
 
   <!-- OGP -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="nazeyama【公式サイト】" />
-  <meta property="og:description" content="YouTubeチャンネル nazeyamaの公式ホームページです。物理・受験生・大学生・大学院生向けの動画紹介やおすすめの参考書を掲載しています。" />
+  <meta property="og:title" content="nazeyama【非公式ファンサイト】" />
+  <meta property="og:description" content="YouTubeチャンネル nazeyama のファンが制作・運営する非公式ファンサイトです。nazeyama 本人・公式運営とは無関係であり、公式の承認・後援は受けていません。" />
   <meta property="og:image" content="https://shiori-02-14.github.io/nazeyama/assets/images/nazeyama.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -30,9 +30,9 @@
   <script src="data/videos.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script defer src="js/main.js"></script>
-  <meta name="keywords" content="nazeyama, ナゼヤマ, nazeyama YouTube, 物理 YouTuber, 理系 YouTuber, 受験生, 大学生, 大学院生, 物理, 物理大学生, 物理大学院生, リケジョ, 理系女子, 大学院 物理, 筑波大学, 物理 勉強" />
-  <meta name="twitter:title" content="nazeyama【公式サイト】" />
-  <meta name="twitter:description" content="YouTubeチャンネル nazeyamaの公式ホームページです。物理・受験生・大学生・大学院生向けの動画紹介やおすすめの参考書を掲載しています。" />
+  <meta name="keywords" content="nazeyama, ナゼヤマ, nazeyama YouTube, 非公式, ファンサイト, 物理 YouTuber, 理系 YouTuber, 受験生, 大学生, 大学院生, 物理, 物理大学生, 物理大学院生, リケジョ, 理系女子, 大学院 物理, 筑波大学, 物理 勉強" />
+  <meta name="twitter:title" content="nazeyama【非公式ファンサイト】" />
+  <meta name="twitter:description" content="YouTubeチャンネル nazeyama のファンが制作・運営する非公式ファンサイトです。nazeyama 本人・公式運営とは無関係であり、公式の承認・後援は受けていません。" />
   <meta property="og:url" content="https://shiori-02-14.github.io/nazeyama/" />
   <meta name="twitter:image" content="https://shiori-02-14.github.io/nazeyama/assets/images/nazeyama.jpg" />
   <link rel="canonical" href="https://shiori-02-14.github.io/nazeyama/" />
@@ -55,6 +55,10 @@
       </div>
     </div>
   </header>
+
+  <div class="site-disclaimer" id="site-disclaimer" role="note">
+    このサイトは nazeyama さんのファンが制作・運営する非公式ファンサイトです。本人・公式運営とは無関係です。
+  </div>
 
   <main id="top">
     <!-- ===== hero ===== -->
@@ -113,7 +117,7 @@
         <h2 class="section__title"><span class="sym">🐾</span><span class="underline-chalk">物理屋のネッコ</span></h2>
         <div class="neko__wrap">
           <div class="neko__art">
-            <img class="neko__img" src="assets/images/physicsneko.png" alt="物理屋のネッコ（nazeyama公式LINEスタンプのキャラクター）" width="240" height="240" loading="lazy" />
+            <img class="neko__img" src="assets/images/physicsneko.png" alt="物理屋のネッコ（nazeyama さんの LINE スタンプ・非公式紹介）" width="240" height="240" loading="lazy" />
           </div>
           <div class="neko__text">
             <h3 id="neko-name">物理屋のネッコ / nazeyama</h3>
@@ -131,12 +135,12 @@
           <div class="card card--member" id="membership" data-section="membership">
             <h2 class="section__title section__title--sm"><span class="sym">★</span><span class="underline-chalk">メンバーシップ</span></h2>
             <p class="price" id="member-price">月額80円</p>
-            <p class="member__note" id="member-note">ゆるく応援してくれると嬉しいです。</p>
+            <p class="member__note" id="member-note">nazeyama さんのチャンネルでは月額80円のメンバーシップを提供しています。</p>
             <a class="btn-outline btn-outline--yt" id="member-link" href="https://www.youtube.com/channel/UCMn-qF0yqH-07bEJBaWUL5A/join" target="_blank" rel="noopener">メンバーになる</a>
           </div>
           <div class="card" id="fanletter" data-section="fanletter">
             <h2 class="section__title"><span class="sym">✉</span><span class="underline-chalk">おたより・プレゼント</span></h2>
-            <p>お手紙やプレゼントの送り先です。</p>
+            <p id="letter-intro">以下は nazeyama さんが公開している送付先情報の転載です。最新情報は YouTube 等の公式発信をご確認ください。</p>
             <p class="letter__addr" id="letter-addr">〒573-0073 大阪府枚方市高田2丁目26-10-6 プレゼントハウス519「nazeyama」</p>
             <ul class="letter__notes" id="letter-notes">
               <li>amazon等のECサイトから届く場合は、住所の下に「置き配禁止」の記載をお願いします。</li>
@@ -152,9 +156,10 @@
     <!-- ===== contact / sns ===== -->
     <section class="section section--contact" id="contact" data-section="contact">
       <div class="container container--narrow reveal">
-        <h2 class="section__title section__title--sm"><span class="sym">@</span><span class="underline-chalk">SNS・お問い合わせ</span></h2>
+        <h2 class="section__title section__title--sm"><span class="sym">@</span><span class="underline-chalk">SNSリンク / ファンサイト運営へのお問い合わせ</span></h2>
         <div class="contact__panel">
           <ul class="sns" data-sns-list></ul>
+          <p class="contact__intro" id="contact-intro">nazeyama さん本人への連絡は各SNS・YouTubeをご利用ください。以下のフォームはファンサイト運営（shiori-02-14）へのお問い合わせ用です。</p>
           <form class="form" id="contact-form" action="https://formspree.io/f/your_form_id" method="POST">
             <div class="form__row">
               <div class="form__field">
@@ -180,7 +185,8 @@
   <!-- ===== footer ===== -->
   <footer class="footer">
     <div class="container">
-      <p>© <span id="footer-year">2026</span> <span id="footer-title">nazeyama</span></p>
+      <p class="footer__disclaimer" id="footer-disclaimer">当サイトは nazeyama さんのファンが制作・運営する非公式ファンサイトです。nazeyama 本人・YouTube・LINE 等の公式運営とは無関係であり、公式の承認・後援は受けていません。商標・画像・動画等の権利は各権利者に帰属します。</p>
+      <p class="footer__copy">© <span id="footer-year">2026</span> <span id="footer-operator">shiori-02-14</span> — <span id="footer-title">nazeyama 非公式ファンサイト</span></p>
     </div>
   </footer>
 </body>

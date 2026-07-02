@@ -1,5 +1,5 @@
 /* =========================================================
-   nazeyama 公式サイト  メインスクリプト
+   nazeyama 非公式ファンサイト  メインスクリプト
    - content/site.yaml を読み込んで各セクションを描画
    - 動画マーキー / 登録者数カウンター / タブ / スクロール演出
    - 読み込み失敗時は下の DEFAULTS にフォールバック（file:// でも表示できる）
@@ -31,6 +31,11 @@ const MIN_DEFAULTS = {
   membership: {},
   fanletter: { notes: [] },
   contact: {},
+  operator: { name: "shiori-02-14", contact_label: "ファンサイト運営へのお問い合わせ" },
+  disclaimer: {
+    banner: "このサイトは nazeyama さんのファンが制作・運営する非公式ファンサイトです。本人・公式運営とは無関係です。",
+    footer: "当サイトは nazeyama さんのファンが制作・運営する非公式ファンサイトです。nazeyama 本人・YouTube・LINE 等の公式運営とは無関係であり、公式の承認・後援は受けていません。商標・画像・動画等の権利は各権利者に帰属します。",
+  },
   affiliate: {},
   display: { videos: true, neko: true, books: true, membership: true, fanletter: true, contact: true },
   books: { novels: { items: [] }, exam: { items: [] } },
@@ -107,6 +112,7 @@ async function init() {
   applyImages(site.images);
   applySeoMeta(site);
   applyDisplay(site.display || {});
+  renderDisclaimer(site);
   renderFooter(site);
   setHref("#nav-cta", site.youtube.channel_url);
   setupNav();
@@ -211,7 +217,7 @@ function applySeoMeta(site) {
   setMetaTag("keywords", keywords);
   setMetaTag("og:title", title, true);
   setMetaTag("og:description", description, true);
-  setMetaTag("og:site_name", s.title || "nazeyama", true);
+  setMetaTag("og:site_name", (s.title || "nazeyama") + " 非公式ファンサイト", true);
   setMetaTag("twitter:title", title);
   setMetaTag("twitter:description", description);
   const ogImage = absAssetUrl(s.url, site.images?.ogp || site.images?.logo);
@@ -237,23 +243,33 @@ function applySeoMeta(site) {
 
 function injectJsonLd(site, description) {
   const s = site.site || {};
+  const op = site.operator || {};
   const sameAs = (site.sns || []).map((x) => x.url).filter(Boolean);
-  const data = {
-    "@context": "https://schema.org",
+  const about = {
     "@type": "Person",
     name: s.title || "nazeyama",
-    description: description || "",
-    url: s.url || undefined,
     sameAs: sameAs.length ? sameAs : undefined,
     jobTitle: "YouTuber",
     knowsAbout: ["物理学", "大学院", "理系"],
   };
+  if (!about.sameAs) delete about.sameAs;
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: (s.title || "nazeyama") + " 非公式ファンサイト",
+    description: description || "",
+    url: s.url || undefined,
+    publisher: {
+      "@type": "Person",
+      name: op.name || "shiori-02-14",
+    },
+    about,
+  };
   if (!data.url) delete data.url;
-  if (!data.sameAs) delete data.sameAs;
-  let el = document.getElementById("jsonld-person");
+  let el = document.getElementById("jsonld-website");
   if (!el) {
     el = document.createElement("script");
-    el.id = "jsonld-person";
+    el.id = "jsonld-website";
     el.type = "application/ld+json";
     document.head.appendChild(el);
   }
@@ -355,6 +371,7 @@ function renderMembership(s) {
 }
 
 function renderFanletter(s) {
+  setText("#letter-intro", s.fanletter.intro);
   setText("#letter-addr", s.fanletter.postal + " " + s.fanletter.address);
   const notes = $("#letter-notes");
   if (notes && Array.isArray(s.fanletter.notes)) {
@@ -363,10 +380,25 @@ function renderFanletter(s) {
 }
 
 function renderContact(s) {
+  setText("#contact-intro", s.contact && s.contact.intro);
   const form = $("#contact-form");
   if (form && s.contact && s.contact.formspree_endpoint) {
     form.setAttribute("action", s.contact.formspree_endpoint);
   }
+}
+
+function renderDisclaimer(s) {
+  const d = s.disclaimer || {};
+  setText("#site-disclaimer", d.banner);
+  setText("#footer-disclaimer", d.footer);
+}
+
+function renderFooter(s) {
+  const op = s.operator || {};
+  const siteTitle = s.site && s.site.title ? s.site.title : "nazeyama";
+  setText("#footer-year", String(new Date().getFullYear()));
+  setText("#footer-operator", op.name || "shiori-02-14");
+  setText("#footer-title", siteTitle + " 非公式ファンサイト");
 }
 
 function bookMetaKey(b) {
@@ -427,11 +459,6 @@ function renderBookGrid(sel, cat, tag) {
       "</div>"
     );
   }).join("");
-}
-
-function renderFooter(s) {
-  setText("#footer-year", String(new Date().getFullYear()));
-  setText("#footer-title", s.site.title);
 }
 
 /* ---------------- nav (mobile) ---------------- */

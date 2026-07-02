@@ -61,11 +61,11 @@ function parseSiteYaml(src) {
   if (!site.seo.title) site.seo.title = `${site.title}｜${site.tagline}`;
   if (!site.seo.description) {
     site.seo.description =
-      `物理系YouTuber ${site.title}（ナゼヤマ）の公式サイト。理系・リケジョ・大学院・物理の勉強と日常を発信。${site.tagline}`;
+      `YouTubeチャンネル ${site.title}（ナゼヤマ）のファンが制作・運営する非公式ファンサイトです。${site.title} 本人・公式運営とは無関係であり、公式の承認・後援は受けていません。${site.tagline}`;
   }
   if (!site.seo.books_description) {
     site.seo.books_description =
-      `${site.title} のおすすめ小説・院試参考書。理系・物理の読書リスト。`;
+      `${site.title} さんの非公式ファンサイトがまとめたおすすめ小説・院試参考書。理系・物理の読書リスト。`;
   }
   return site;
 }

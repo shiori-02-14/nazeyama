@@ -1,5 +1,5 @@
 # ============================================================
-#  nazeyama 公式サイト — 編集はこのファイルだけでOK
+#  nazeyama 非公式ファンサイト — 編集はこのファイルだけでOK
 # ============================================================
 #  ・行頭の # はメモ（サイトに出ません）
 #  ・日本語はそのまま書けます
@@ -17,12 +17,14 @@ site:
   url: "https://shiori-02-14.github.io/nazeyama/"
   # 検索・LINE/Xシェア用（サイト上の黒板とは別でOK）
   seo:
-    title: "nazeyama【公式サイト】"
-    description: "YouTubeチャンネル nazeyamaの公式ホームページです。物理・受験生・大学生・大学院生向けの動画紹介やおすすめの参考書を掲載しています。"
+    title: "nazeyama【非公式ファンサイト】"
+    description: "YouTubeチャンネル nazeyama のファンが制作・運営する非公式ファンサイトです。nazeyama 本人・公式運営とは無関係であり、公式の承認・後援は受けていません。"
     keywords:
       - nazeyama
       - ナゼヤマ
       - nazeyama YouTube
+      - 非公式
+      - ファンサイト
       - 物理 YouTuber
       - 理系 YouTuber
       - 受験生
@@ -37,7 +39,18 @@ site:
       - 筑波大学
       - 物理 勉強
     books_title: "おすすめの本"
-    books_description: "nazeyama のおすすめ小説・院試参考書。理系・物理の読書リスト。"
+    books_description: "nazeyama さんの非公式ファンサイトがまとめたおすすめ小説・院試参考書。理系・物理の読書リスト。"
+
+
+# ── 運営者・免責 ─────────────────────────────────────────
+
+operator:
+  name: "shiori-02-14"
+  contact_label: "ファンサイト運営へのお問い合わせ"
+
+disclaimer:
+  banner: "このサイトは nazeyama さんのファンが制作・運営する非公式ファンサイトです。本人・公式運営とは無関係です。"
+  footer: "当サイトは nazeyama さんのファンが制作・運営する非公式ファンサイトです。nazeyama 本人・YouTube・LINE 等の公式運営とは無関係であり、公式の承認・後援は受けていません。商標・画像・動画等の権利は各権利者に帰属します。"
 
 
 # ── ② 画像（assets/images/ に置いたファイル名） ─────────
@@ -94,12 +107,13 @@ line_stamp:
 
 membership:
   price: "月額80円"
-  note: "ゆるく応援してくれると嬉しいです。"
+  note: "nazeyama さんのチャンネルでは月額80円のメンバーシップを提供しています。"
 
 
 # ── ⑧ おたより・プレゼント ───────────────────────────────
 
 fanletter:
+  intro: "以下は nazeyama さんが公開している送付先情報の転載です。最新情報は YouTube 等の公式発信をご確認ください。"
   postal: "〒573-0073"
   address: "大阪府枚方市高田2丁目26-10-6 プレゼントハウス519「nazeyama」"
   notes:
@@ -112,6 +126,7 @@ fanletter:
 # ── ⑨ お問い合わせフォーム ───────────────────────────────
 
 contact:
+  intro: "nazeyama さん本人への連絡は各SNS・YouTubeをご利用ください。以下のフォームはファンサイト運営（shiori-02-14）へのお問い合わせ用です。"
   # Formspree(https://formspree.io) で作った URL を貼る（今は未設定）
   formspree_endpoint: "https://formspree.io/f/your_form_id"
 
@@ -120,7 +135,7 @@ contact:
 
 affiliate:
   amazon_tag: "nazeyama-22"
-  disclosure: "当サイトはAmazonアソシエイト・プログラムの参加者です。適格販売により収入を得る場合があります。"
+  disclosure: "当サイトはAmazonアソシエイト・プログラムの参加者です。非公式ファンサイト運営者（shiori-02-14）が参加しており、適格販売により収入を得る場合があります。"
 
 
 # ── ⑪ セクションの表示 ON/OFF ────────────────────────────
