@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17",
+  "updated": "2026-10-18",
   "source": "youtube-channel",
   "videos": [
     {
@@ -14,11 +14,22 @@
       "type": "live"
     },
     {
+      "title": "【バトスピ合宿】初めてづくしの島根旅行に行ってきたよ〜✈️⛩✨【初Airbnb・初寝台列車・初島根】",
+      "videoId": "mEQW9fv3GwQ",
+      "url": "https://www.youtube.com/watch?v=mEQW9fv3GwQ",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/mEQW9fv3GwQ/mqdefault.jpg",
+      "published": "2026-10-03",
+      "membersOnly": true,
+      "type": "video"
+    },
+    {
       "title": "理系大学院生のリアルな1日。夏休み編。 #理系 #理系大学生 #vlog #物理学科",
       "videoId": "zYXv2itZGpc",
       "url": "https://www.youtube.com/shorts/zYXv2itZGpc",
-      "views": "8,972回",
-      "viewCount": 8972,
+      "views": "8,991回",
+      "viewCount": 8991,
       "thumbnail": "https://i.ytimg.com/vi/zYXv2itZGpc/mqdefault.jpg",
       "published": "2026-10-01",
       "membersOnly": false,
@@ -39,8 +50,8 @@
       "title": "イベントで頂いたプレゼント開封！概要欄からロングver.見れます！",
       "videoId": "CAszig7pwlI",
       "url": "https://www.youtube.com/shorts/CAszig7pwlI",
-      "views": "5,176回",
-      "viewCount": 5176,
+      "views": "5,189回",
+      "viewCount": 5189,
       "thumbnail": "https://i.ytimg.com/vi/CAszig7pwlI/mqdefault.jpg",
       "published": "2026-09-25",
       "membersOnly": false,
@@ -69,17 +80,6 @@
       "type": "live"
     },
     {
-      "title": "理系英単語テスト-中級編-/物理学修士課程1年生        #物理学科 #理系大学生 #大学院生 #理系女子 #理系",
-      "videoId": "rk7NngcTjDE",
-      "url": "https://www.youtube.com/shorts/rk7NngcTjDE",
-      "views": "5,934回",
-      "viewCount": 5934,
-      "thumbnail": "https://i.ytimg.com/vi/rk7NngcTjDE/mqdefault.jpg",
-      "published": "2026-09-19",
-      "membersOnly": false,
-      "type": "short"
-    },
-    {
       "title": "【夏学】全国から理系大学院生が集まる！夏の学校VLOG【物理学修士課程1年生】",
       "videoId": "t4k_eXT8qHU",
       "url": "https://www.youtube.com/watch?v=t4k_eXT8qHU",
@@ -89,6 +89,17 @@
       "published": "2026-09-19",
       "membersOnly": false,
       "type": "video"
+    },
+    {
+      "title": "理系英単語テスト-中級編-/物理学修士課程1年生        #物理学科 #理系大学生 #大学院生 #理系女子 #理系",
+      "videoId": "rk7NngcTjDE",
+      "url": "https://www.youtube.com/shorts/rk7NngcTjDE",
+      "views": "5,936回",
+      "viewCount": 5936,
+      "thumbnail": "https://i.ytimg.com/vi/rk7NngcTjDE/mqdefault.jpg",
+      "published": "2026-09-19",
+      "membersOnly": false,
+      "type": "short"
     },
     {
       "title": "オフ会まであと2日✨️[2026/9/18の記録]",
@@ -179,6 +190,17 @@
       "type": "short"
     },
     {
+      "title": "支離滅裂研究ネガティブ野郎",
+      "videoId": "CnV_WhnFwG4",
+      "url": "https://www.youtube.com/watch?v=CnV_WhnFwG4",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/CnV_WhnFwG4/mqdefault.jpg",
+      "published": "2026-09-07",
+      "membersOnly": true,
+      "type": "video"
+    },
+    {
       "title": "オフ会まであと13日✨️[2026/9/7の記録]",
       "videoId": "H9PCbHCUKkQ",
       "url": "https://www.youtube.com/shorts/H9PCbHCUKkQ",
@@ -234,17 +256,6 @@
       "type": "short"
     },
     {
-      "title": "オフ会まであと18日✨️[2026/9/2の記録]",
-      "videoId": "pYih-XWWjSc",
-      "url": "https://www.youtube.com/shorts/pYih-XWWjSc",
-      "views": "",
-      "viewCount": 0,
-      "thumbnail": "https://i.ytimg.com/vi/pYih-XWWjSc/mqdefault.jpg",
-      "published": "2026-09-02",
-      "membersOnly": true,
-      "type": "short"
-    },
-    {
       "title": "理系大学院生のリアルな日常/物理学修士課程1年生",
       "videoId": "Xv00RpgjUA8",
       "url": "https://www.youtube.com/watch?v=Xv00RpgjUA8",
@@ -254,6 +265,17 @@
       "published": "2026-09-02",
       "membersOnly": false,
       "type": "video"
+    },
+    {
+      "title": "オフ会まであと18日✨️[2026/9/2の記録]",
+      "videoId": "pYih-XWWjSc",
+      "url": "https://www.youtube.com/shorts/pYih-XWWjSc",
+      "views": "",
+      "viewCount": 0,
+      "thumbnail": "https://i.ytimg.com/vi/pYih-XWWjSc/mqdefault.jpg",
+      "published": "2026-09-02",
+      "membersOnly": true,
+      "type": "short"
     },
     {
       "title": "オフ会まであと19日✨️[2026/9/1の記録]",
@@ -267,6 +289,17 @@
       "type": "short"
     },
     {
+      "title": "進捗報告で優しく言ってくれるけど呆れが伝わって怖い先生の「て」。",
+      "videoId": "YaTwCUwg27Q",
+      "url": "https://www.youtube.com/watch?v=YaTwCUwg27Q",
+      "views": "25,000回",
+      "viewCount": 25000,
+      "thumbnail": "https://i.ytimg.com/vi/YaTwCUwg27Q/mqdefault.jpg",
+      "published": "2026-08-30",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
       "title": "Pursue the truth👩‍🎓",
       "videoId": "4A8Zu9iYh8c",
       "url": "https://www.youtube.com/watch?v=4A8Zu9iYh8c",
@@ -278,14 +311,14 @@
       "type": "live"
     },
     {
-      "title": "進捗報告で優しく言ってくれるけど呆れが伝わって怖い先生の「て」。",
-      "videoId": "YaTwCUwg27Q",
-      "url": "https://www.youtube.com/watch?v=YaTwCUwg27Q",
-      "views": "25,000回",
-      "viewCount": 25000,
-      "thumbnail": "https://i.ytimg.com/vi/YaTwCUwg27Q/mqdefault.jpg",
-      "published": "2026-08-30",
-      "membersOnly": false,
+      "title": "【一人旅】愛知県岡崎で東海オンエア聖地巡りしてきたよ〜𝙤𝙤𝙤𝙤𝙤𝙔𝙚 .ᐟ.ᐟ🛫𓐃   🤸【✌️】",
+      "videoId": "kYR_DvzxXIg",
+      "url": "https://www.youtube.com/watch?v=kYR_DvzxXIg",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/kYR_DvzxXIg/mqdefault.jpg",
+      "published": "2026-08-27",
+      "membersOnly": true,
       "type": "video"
     },
     {
@@ -311,6 +344,17 @@
       "type": "live"
     },
     {
+      "title": "発熱でうらめしや",
+      "videoId": "A7-ZnI0TLOI",
+      "url": "https://www.youtube.com/watch?v=A7-ZnI0TLOI",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/A7-ZnI0TLOI/mqdefault.jpg",
+      "published": "2026-07-29",
+      "membersOnly": true,
+      "type": "video"
+    },
+    {
       "title": "理系大学院生のリアルな日常/物理学科 #物理学科 #理系 #vlog #大学院生 #study #理系女子",
       "videoId": "AES_-qdHPAE",
       "url": "https://www.youtube.com/shorts/AES_-qdHPAE",
@@ -320,6 +364,17 @@
       "published": "2026-07-29",
       "membersOnly": false,
       "type": "short"
+    },
+    {
+      "title": "購入したいもの紹介/夏の文庫フェアわくわくするね、KADOKAWA編だよ",
+      "videoId": "bkSnAAe04Us",
+      "url": "https://www.youtube.com/watch?v=bkSnAAe04Us",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/bkSnAAe04Us/mqdefault.jpg",
+      "published": "2026-07-09",
+      "membersOnly": true,
+      "type": "video"
     },
     {
       "title": "私クソガキ得意",
@@ -342,6 +397,17 @@
       "published": "2026-06-28",
       "membersOnly": false,
       "type": "short"
+    },
+    {
+      "title": "寝れないから、私がチョロすぎる件について考えるよ",
+      "videoId": "oWgJFfZIYqY",
+      "url": "https://www.youtube.com/watch?v=oWgJFfZIYqY",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/oWgJFfZIYqY/mqdefault.jpg",
+      "published": "2026-06-25",
+      "membersOnly": true,
+      "type": "video"
     },
     {
       "title": "理系大学院生の気になる子と飲みに行った日 #vlog #理系 #物理学科 #study #勉強 #大学院生",
@@ -399,6 +465,28 @@
       "type": "short"
     },
     {
+      "title": "【高校同期旅】四国旅行に行ったよ✈️🍊🥢/讃岐うどん、みかんジュース、道後温泉！♨️🧳",
+      "videoId": "k7BZMwYLdVw",
+      "url": "https://www.youtube.com/watch?v=k7BZMwYLdVw",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/k7BZMwYLdVw/mqdefault.jpg",
+      "published": "2026-06-03",
+      "membersOnly": true,
+      "type": "video"
+    },
+    {
+      "title": "キャパオーバーした時の私を分析した。そして、物理できない、、。",
+      "videoId": "b7fF4fNhqHw",
+      "url": "https://www.youtube.com/watch?v=b7fF4fNhqHw",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/b7fF4fNhqHw/mqdefault.jpg",
+      "published": "2026-05-22",
+      "membersOnly": true,
+      "type": "video"
+    },
+    {
       "title": "ポンコツ物理学徒の1日 #理系 #vlog #物理学科",
       "videoId": "a8E_iJFyicM",
       "url": "https://www.youtube.com/shorts/a8E_iJFyicM",
@@ -443,6 +531,17 @@
       "type": "short"
     },
     {
+      "title": "妹と二人羽織で積分してみた",
+      "videoId": "c9rxK7aR-S0",
+      "url": "https://www.youtube.com/watch?v=c9rxK7aR-S0",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/c9rxK7aR-S0/mqdefault.jpg",
+      "published": "2026-05-02",
+      "membersOnly": true,
+      "type": "video"
+    },
+    {
       "title": "理系大学院生のリアル１週間コーデ #理系 #理系大学生 #大学生 #大学生1週間コーデ",
       "videoId": "clyF33lbDk4",
       "url": "https://www.youtube.com/shorts/clyF33lbDk4",
@@ -452,6 +551,17 @@
       "published": "2026-04-28",
       "membersOnly": false,
       "type": "short"
+    },
+    {
+      "title": "新しい大学院のシステムに慣れないけど頑張っていきたいVLOG🌸🐱",
+      "videoId": "IN4VCkHLxpw",
+      "url": "https://www.youtube.com/watch?v=IN4VCkHLxpw",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/IN4VCkHLxpw/mqdefault.jpg",
+      "published": "2026-04-22",
+      "membersOnly": true,
+      "type": "video"
     },
     {
       "title": "大学院の学生証を貰いに行く日🌸📓",
@@ -474,6 +584,193 @@
       "published": "2026-04-18",
       "membersOnly": false,
       "type": "short"
+    },
+    {
+      "title": "理系大学生の引越し準備に密着してくれ～✨😊🏠✨🚛💨🏠😢",
+      "videoId": "0kmocXxy4fA",
+      "url": "https://www.youtube.com/watch?v=0kmocXxy4fA",
+      "views": "",
+      "viewCount": null,
+      "thumbnail": "https://i.ytimg.com/vi/0kmocXxy4fA/mqdefault.jpg",
+      "published": "2026-03-24",
+      "membersOnly": true,
+      "type": "video"
+    },
+    {
+      "title": "【4泊5日】夏の学校に行くからパッキングするよ〜🧳【理系大学院生/物理学修士課程1年生】",
+      "videoId": "Z39s9xQfglU",
+      "url": "https://www.youtube.com/watch?v=Z39s9xQfglU",
+      "views": "7,109回",
+      "viewCount": 7109,
+      "thumbnail": "https://i.ytimg.com/vi/Z39s9xQfglU/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "【寝落ちラジオ#3】寝る前に少し物理のことを考えてみませんか？🥱🌃/~鏡はなぜ左右を反転するの？~/~電車から見える景色の動き🚞~/~影は光より速い？~/~睡眠の科学😴💤~【ラジオなぜやまの麓から】",
+      "videoId": "lgIvVDg_Oi0",
+      "url": "https://www.youtube.com/watch?v=lgIvVDg_Oi0",
+      "views": "1,791回",
+      "viewCount": 1791,
+      "thumbnail": "https://i.ytimg.com/vi/lgIvVDg_Oi0/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "徹夜から始まる理系大学院生の一日😭👩‍🎓📑/物理学科/修士課程1年生/塾バイト",
+      "videoId": "sJRrMHnnQWw",
+      "url": "https://www.youtube.com/watch?v=sJRrMHnnQWw",
+      "views": "9,001回",
+      "viewCount": 9001,
+      "thumbnail": "https://i.ytimg.com/vi/sJRrMHnnQWw/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "物理が１番じゃないは逆張りすぎるという件について",
+      "videoId": "UtKKnZpMKT0",
+      "url": "https://www.youtube.com/watch?v=UtKKnZpMKT0",
+      "views": "6,708回",
+      "viewCount": 6708,
+      "thumbnail": "https://i.ytimg.com/vi/UtKKnZpMKT0/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "【ラジオ なぜやまの麓から#2】冷めるコーヒーから見えるもの☕️/地球に落ち続ける月🌖/一緒に少し、物理のことを考えよう",
+      "videoId": "9VphnY8SDMY",
+      "url": "https://www.youtube.com/watch?v=9VphnY8SDMY",
+      "views": "1,468回",
+      "viewCount": 1468,
+      "thumbnail": "https://i.ytimg.com/vi/9VphnY8SDMY/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "理系大学院生の終わらない夜",
+      "videoId": "TpMxIIwMv3E",
+      "url": "https://www.youtube.com/watch?v=TpMxIIwMv3E",
+      "views": "10,591回",
+      "viewCount": 10591,
+      "thumbnail": "https://i.ytimg.com/vi/TpMxIIwMv3E/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "【ラジオ なぜやまの麓から#1】夕焼けってなんで赤いの？/声は空気を震わせる。/一緒に少し、物理のことを考えよう",
+      "videoId": "YrEHko78Xos",
+      "url": "https://www.youtube.com/watch?v=YrEHko78Xos",
+      "views": "3,959回",
+      "viewCount": 3959,
+      "thumbnail": "https://i.ytimg.com/vi/YrEHko78Xos/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "物理学徒です。積分と極限を入れ替えます。",
+      "videoId": "ZvSI4y5sA28",
+      "url": "https://www.youtube.com/watch?v=ZvSI4y5sA28",
+      "views": "208,698回",
+      "viewCount": 208698,
+      "thumbnail": "https://i.ytimg.com/vi/ZvSI4y5sA28/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "初めての名古屋大学！理系大学院生の研究会VLOG👩‍🎓📑/物理学修士1年生",
+      "videoId": "PwA-GXE6yyg",
+      "url": "https://www.youtube.com/watch?v=PwA-GXE6yyg",
+      "views": "17,586回",
+      "viewCount": 17586,
+      "thumbnail": "https://i.ytimg.com/vi/PwA-GXE6yyg/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "国立理系大学院生の1日の過ごし方/物理学修士課程1年生/外部院進",
+      "videoId": "WSyS1pK47VQ",
+      "url": "https://www.youtube.com/watch?v=WSyS1pK47VQ",
+      "views": "20,042回",
+      "viewCount": 20042,
+      "thumbnail": "https://i.ytimg.com/vi/WSyS1pK47VQ/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "外部院試について/東京大学・東京科学大学・筑波大学/物理",
+      "videoId": "dFwgXXzJucA",
+      "url": "https://www.youtube.com/watch?v=dFwgXXzJucA",
+      "views": "52,781回",
+      "viewCount": 52781,
+      "thumbnail": "https://i.ytimg.com/vi/dFwgXXzJucA/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "他大学院進した理系大学院生の慣れない日常です👩‍🎓:( ;´꒳`;)",
+      "videoId": "Ab8tRz4E8nI",
+      "url": "https://www.youtube.com/watch?v=Ab8tRz4E8nI",
+      "views": "12,884回",
+      "viewCount": 12884,
+      "thumbnail": "https://i.ytimg.com/vi/Ab8tRz4E8nI/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "【時効】進学校の落ちこぼれの調査書を見てみよう😭",
+      "videoId": "FhZCca31ObA",
+      "url": "https://www.youtube.com/watch?v=FhZCca31ObA",
+      "views": "7,419回",
+      "viewCount": 7419,
+      "thumbnail": "https://i.ytimg.com/vi/FhZCca31ObA/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "【卒業式】理系大学生の学部生最後の日。",
+      "videoId": "CCpxe1jP3yw",
+      "url": "https://www.youtube.com/watch?v=CCpxe1jP3yw",
+      "views": "22,431回",
+      "viewCount": 22431,
+      "thumbnail": "https://i.ytimg.com/vi/CCpxe1jP3yw/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "【卒論】理系大学生の卒論提出＆卒論発表👩‍🎓📑【物理学科】",
+      "videoId": "Pz3qLTMxNeo",
+      "url": "https://www.youtube.com/watch?v=Pz3qLTMxNeo",
+      "views": "11,129回",
+      "viewCount": 11129,
+      "thumbnail": "https://i.ytimg.com/vi/Pz3qLTMxNeo/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
+    },
+    {
+      "title": "宅浪への考えを、浪人期の受験を大学名とともに振り返りながら話すよ",
+      "videoId": "0OFuUG1Ribs",
+      "url": "https://www.youtube.com/watch?v=0OFuUG1Ribs",
+      "views": "12,556回",
+      "viewCount": 12556,
+      "thumbnail": "https://i.ytimg.com/vi/0OFuUG1Ribs/mqdefault.jpg",
+      "published": "",
+      "membersOnly": false,
+      "type": "video"
     },
     {
       "title": "Re:づがれだ。飲もう。",
